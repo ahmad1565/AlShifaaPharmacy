@@ -1,14 +1,32 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# Robots.txt - صيدلية الشفاء الحديثة
+# https://alshifaa-pharmacy.onspace.app
 
 User-agent: *
+
+# الصفحات المسموح بها
 Allow: /
+Allow: /medicines
+Allow: /about
+Allow: /contact
+
+# الصفحات الممنوعة (خاصة بالمستخدمين)
+Disallow: /cart
+Disallow: /checkout
+Disallow: /login
+Disallow: /register
+Disallow: /dashboard/
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /owner-setup
+
+# ملفات الأصول
+Allow: /assets/
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.png
+Allow: *.webp
+Allow: *.css
+Allow: *.js
+
+# خريطة الموقع
+Sitemap: https://alshifaa-pharmacy.onspace.app/sitemap.xml
