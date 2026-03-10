@@ -181,34 +181,7 @@ npm run build
 
 ### 3️⃣ تعديل الإعدادات النهائية
 
-في `backend/config/database.php`:
-
-```php
-define('SITE_URL', 'https://your-domain.com');
-define('API_URL', 'https://your-domain.com/api');
-define('JWT_SECRET', 'YOUR-UNIQUE-SECRET-KEY-HERE');
-```
-
----
-
-## 🔐 بيانات الدخول الافتراضية
-
-### المالك (Owner)
-- **البريد:** hajaraldhaheri2016@gmail.com
-- **كلمة المرور:** admin123456
-
-> ⚠️ **مهم:** غيّر كلمة المرور فوراً بعد أول تسجيل دخول!
-
----
-
-## 📚 استخدام API
-
-### الحصول على جميع الأدوية
-```
-GET /api/medicines/get_all.php
-GET /api/medicines/get_all.php?category=مسكنات
-GET /api/medicines/get_all.php?search=بارامول
-```
+في `backend/config/database.php
 
 ### الحصول على دواء محدد
 ```
@@ -280,35 +253,7 @@ try {
     http_response_code(500);
     echo json_encode([
         'success' => false,
-        'error' => $e->getMessage()
-    ]);
-}
-```
-
-2. استخدمه من Frontend:
-
-```typescript
-const response = await fetch('http://localhost:8000/api/your-endpoint.php');
-const data = await response.json();
-```
-
----
-
-## 🔒 الأمان
-
-- ✅ استخدام Prepared Statements لمنع SQL Injection
-- ✅ تشفير كلمات المرور بـ SHA-256
-- ⚠️ يجب إضافة نظام JWT للمصادقة
-- ⚠️ يجب تفعيل HTTPS في Production
-- ⚠️ غيّر `JWT_SECRET` في الإنتاج
-
----
-
-## 📞 الدعم الفني
-
-- **البريد الإلكتروني:** hajaraldhaheri2016@gmail.com
-- **الواتساب:** +213558166889
-
+        '
 ---
 
 ## 📄 الترخيص
