@@ -1,52 +1,2276 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Essential SEO Meta Tags -->
-    <title>صيدلية الشفاء الحديثة - أدوية أصلية بأفضل الأسعار في مصر</title>
-    <meta name="description" content="صيدلية الشفاء الحديثة - احصل على أدويتك بجودة عالية وأسعار منافسة. خدمة توصيل سريعة في جميع أنحاء مصر. مضادات حيوية، فيتامينات، مسكنات وأكثر." />
-    <meta name="keywords" content="صيدلية, أدوية, مصر, الشفاء, مسكنات, مضادات حيوية, فيتامينات, توصيل أدوية, pharmacy egypt" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="DATAWISE – منصة مجانية لتحليل البيانات محليًا داخل المتصفح">
+  <title>DATAWISE – AI DATA ANALYST</title>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://alshifaa-pharmacy.onspace.app" />
-    <meta property="og:title" content="صيدلية الشفاء الحديثة - أدوية أصلية بأفضل الأسعار" />
-    <meta property="og:description" content="احصل على أدويتك بجودة عالية وأسعار منافسة. خدمة توصيل سريعة في جميع أنحاء مصر" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1576602976047-174e57a47881?w=1200&h=630&fit=crop" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="صيدلية الشفاء الحديثة" />
-    <meta property="og:locale" content="ar_EG" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://alshifaa-pharmacy.onspace.app" />
-    <meta name="twitter:title" content="صيدلية الشفاء الحديثة - أدوية أصلية بأفضل الأسعار" />
-    <meta name="twitter:description" content="احصل على أدويتك بجودة عالية وأسعار منافسة. خدمة توصيل سريعة في جميع أنحاء مصر" />
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1576602976047-174e57a47881?w=1200&h=630&fit=crop" />
-
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Pharmacy",
-      "name": "صيدلية الشفاء الحديثة",
-      "url": "https://alshifaa-pharmacy.onspace.app",
-      "description": "صيدلية متخصصة في توفير الأدوية الأصلية بأفضل الأسعار في مصر",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "EG"
-      },
-      "email": "hajaraldhaheri2016@gmail.com",
-      "telephone": "+213558166889"
+  <style>
+    :root{
+      --bg:#f6f8fc;
+      --surface:#fff;
+      --surface-2:#f8fafc;
+      --surface-3:#eef2ff;
+      --text:#111827;
+      --muted:#64748b;
+      --muted-2:#94a3b8;
+      --border:#e2e8f0;
+      --primary:#4f46e5;
+      --primary-2:#6366f1;
+      --cyan:#06b6d4;
+      --green:#10b981;
+      --yellow:#f59e0b;
+      --red:#ef4444;
+      --navy:#0f172a;
+      --shadow:0 18px 50px rgba(15,23,42,.08);
+      --shadow-sm:0 8px 24px rgba(15,23,42,.06);
+      --radius:22px;
+      --radius-sm:14px;
+      --sidebar:248px;
     }
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    body.dark{
+      --bg:#080f1d;
+      --surface:#0f172a;
+      --surface-2:#111c31;
+      --surface-3:#18213c;
+      --text:#f8fafc;
+      --muted:#a8b3c7;
+      --muted-2:#7f8da5;
+      --border:#23304a;
+      --navy:#f8fafc;
+      --shadow:0 18px 50px rgba(0,0,0,.28);
+      --shadow-sm:0 8px 24px rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 75% -20%,rgba(99,102,241,.13),transparent 28%),
+        radial-gradient(circle at 5% 30%,rgba(6,182,212,.08),transparent 26%),
+        var(--bg);
+      font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+      line-height:1.6;
+      min-height:100vh;
+    }
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    button:disabled{cursor:not-allowed;opacity:.55}
+    a{color:inherit;text-decoration:none}
+    .hidden{display:none!important}
+    .ltr{direction:ltr}
+    .muted{color:var(--muted)}
+    .small{font-size:.82rem}
+    .nowrap{white-space:nowrap}
+    .truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .container{width:min(1180px,calc(100% - 32px));margin:auto}
+    .top-nav{
+      height:74px;display:flex;align-items:center;justify-content:space-between;
+      position:relative;z-index:5
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{
+      width:43px;height:43px;border-radius:14px;display:grid;place-items:center;
+      color:#fff;font-weight:900;font-size:1.22rem;
+      background:linear-gradient(135deg,var(--primary),var(--cyan));
+      box-shadow:0 10px 25px rgba(79,70,229,.28)
+    }
+    .brand-name{font-size:1.05rem;font-weight:900;letter-spacing:.5px}
+    .brand-sub{display:block;color:var(--muted);font-size:.69rem;letter-spacing:.9px}
+    .top-actions,.inline-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+    .btn{
+      border:1px solid transparent;border-radius:12px;padding:10px 16px;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      color:var(--text);background:var(--surface);font-weight:750;
+      transition:.2s ease;box-shadow:none
+    }
+    .btn:hover{transform:translateY(-1px);border-color:#c7d2fe}
+    .btn-primary{
+      color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      box-shadow:0 10px 24px rgba(79,70,229,.24)
+    }
+    .btn-secondary{background:var(--surface);border-color:var(--border)}
+    .btn-soft{background:var(--surface-3);color:var(--primary);border-color:transparent}
+    .btn-danger{background:#fef2f2;color:#b91c1c;border-color:#fecaca}
+    .btn-success{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
+    .btn-sm{padding:7px 11px;border-radius:10px;font-size:.82rem}
+    .icon-btn{
+      width:40px;height:40px;padding:0;border-radius:12px;border:1px solid var(--border);
+      background:var(--surface);color:var(--text);display:grid;place-items:center
+    }
+    .hero{padding:58px 0 76px;position:relative;overflow:hidden}
+    .hero-grid{
+      display:grid;grid-template-columns:1.02fr .98fr;gap:65px;align-items:center
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;
+      color:var(--primary);background:var(--surface-3);font-size:.78rem;font-weight:850
+    }
+    .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 6px rgba(16,185,129,.12)}
+    h1{font-size:clamp(2.45rem,5.5vw,4.75rem);line-height:1.08;margin:21px 0 18px;letter-spacing:-2px}
+    .gradient-text{
+      background:linear-gradient(100deg,var(--primary),#7c3aed,var(--cyan));
+      -webkit-background-clip:text;background-clip:text;color:transparent
+    }
+    .hero-lead{font-size:1.12rem;color:var(--muted);max-width:670px;margin:0 0 27px}
+    .hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-bottom:28px}
+    .trust-row{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.84rem;font-weight:700}
+    .trust-row span{display:flex;gap:7px;align-items:center}
+    .trust-row b{color:var(--green)}
+    .upload-card{
+      background:rgba(255,255,255,.78);backdrop-filter:blur(20px);
+      border:1px solid rgba(199,210,254,.8);border-radius:28px;padding:18px;
+      box-shadow:0 28px 75px rgba(79,70,229,.16);position:relative
+    }
+    body.dark .upload-card{background:rgba(15,23,42,.84);border-color:#313d68}
+    .upload-card:before{
+      content:"";position:absolute;inset:-18px;border-radius:38px;z-index:-1;
+      background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(6,182,212,.08));filter:blur(3px)
+    }
+    .drop-zone{
+      min-height:355px;border:1.5px dashed #a5b4fc;border-radius:22px;
+      background:linear-gradient(160deg,rgba(238,242,255,.72),rgba(255,255,255,.55));
+      display:flex;align-items:center;justify-content:center;text-align:center;
+      padding:32px;transition:.2s
+    }
+    body.dark .drop-zone{background:linear-gradient(160deg,rgba(30,41,75,.8),rgba(15,23,42,.65))}
+    .drop-zone.drag{border-color:var(--primary);transform:scale(1.012);background:var(--surface-3)}
+    .upload-icon{
+      width:76px;height:76px;border-radius:24px;margin:0 auto 18px;display:grid;place-items:center;
+      font-size:2rem;background:linear-gradient(135deg,#e0e7ff,#cffafe);color:var(--primary)
+    }
+    .drop-zone h3{margin:0 0 7px;font-size:1.25rem}
+    .drop-zone p{margin:0 auto 15px;color:var(--muted);font-size:.9rem}
+    .formats{color:var(--muted-2);font-size:.72rem;margin-top:16px;direction:ltr;line-height:1.8}
+    .privacy-note{
+      margin-top:13px;padding:11px 14px;border-radius:12px;background:#ecfdf5;
+      color:#047857;font-size:.77rem;font-weight:700;display:flex;gap:8px;align-items:center
+    }
+    body.dark .privacy-note{background:rgba(16,185,129,.12);color:#6ee7b7}
+    .features{padding:70px 0 95px}
+    .section-title{text-align:center;max-width:650px;margin:0 auto 38px}
+    .section-title h2{font-size:2rem;margin:0 0 8px}
+    .section-title p{color:var(--muted);margin:0}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature-card{
+      background:var(--surface);border:1px solid var(--border);border-radius:20px;
+      padding:24px;box-shadow:var(--shadow-sm)
+    }
+    .feature-card .ficon{font-size:1.45rem;margin-bottom:12px}
+    .feature-card h3{font-size:1rem;margin:0 0 7px}
+    .feature-card p{font-size:.84rem;color:var(--muted);margin:0}
+    .landing-footer{
+      border-top:1px solid var(--border);padding:25px 0;color:var(--muted);font-size:.82rem
+    }
+    .footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+
+    /* Application */
+    #appShell{min-height:100vh}
+    .app-header{
+      height:70px;position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);
+      backdrop-filter:blur(18px);border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;padding:0 20px
+    }
+    body.dark .app-header{background:rgba(8,15,29,.88)}
+    .file-chip{
+      display:flex;align-items:center;gap:10px;max-width:330px;padding:7px 11px;
+      background:var(--surface-2);border:1px solid var(--border);border-radius:12px
+    }
+    .file-icon{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#e0e7ff;color:var(--primary)}
+    .app-layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:calc(100vh - 70px)}
+    .sidebar{
+      position:sticky;top:70px;height:calc(100vh - 70px);padding:19px 13px;
+      border-left:1px solid var(--border);background:var(--surface);overflow:auto;z-index:20
+    }
+    .nav-group-title{font-size:.68rem;font-weight:900;color:var(--muted-2);padding:9px 12px;text-transform:uppercase}
+    .side-nav{display:flex;flex-direction:column;gap:4px}
+    .nav-item{
+      border:0;background:transparent;color:var(--muted);padding:10px 12px;border-radius:11px;
+      display:flex;align-items:center;gap:10px;text-align:right;font-size:.87rem;font-weight:740;width:100%
+    }
+    .nav-item:hover{background:var(--surface-2);color:var(--text)}
+    .nav-item.active{background:var(--surface-3);color:var(--primary)}
+    .nav-icon{font-size:1rem;width:22px;text-align:center}
+    .sidebar-privacy{
+      margin-top:23px;padding:13px;border-radius:13px;background:#ecfdf5;color:#047857;font-size:.7rem
+    }
+    body.dark .sidebar-privacy{background:rgba(16,185,129,.1);color:#6ee7b7}
+    .app-main{min-width:0;padding:22px 24px 70px}
+    .workspace-toolbar{
+      background:var(--surface);border:1px solid var(--border);border-radius:17px;
+      padding:13px 15px;display:flex;align-items:center;justify-content:space-between;
+      gap:12px;flex-wrap:wrap;margin-bottom:18px;box-shadow:var(--shadow-sm)
+    }
+    .toolbar-group{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+    .field-inline{display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--muted)}
+    select,input[type="text"],input[type="number"],input[type="date"],textarea{
+      color:var(--text);background:var(--surface);border:1px solid var(--border);
+      border-radius:10px;padding:8px 10px;outline:none;min-width:0
+    }
+    select:focus,input:focus,textarea:focus{border-color:#818cf8;box-shadow:0 0 0 3px rgba(99,102,241,.11)}
+    .data-status{
+      padding:6px 10px;border-radius:999px;font-size:.72rem;font-weight:800;
+      color:#047857;background:#ecfdf5
+    }
+    body.dark .data-status{background:rgba(16,185,129,.12);color:#6ee7b7}
+    .content-section{display:none}
+    .content-section.active{display:block;animation:fade .22s ease}
+    @keyframes fade{from{opacity:.2;transform:translateY(5px)}to{opacity:1;transform:none}}
+    .page-heading{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin:4px 0 20px}
+    .page-heading h2{margin:0 0 4px;font-size:1.55rem}
+    .page-heading p{margin:0;color:var(--muted);font-size:.86rem}
+    .card{
+      background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+      box-shadow:var(--shadow-sm)
+    }
+    .card-pad{padding:20px}
+    .card-head{
+      padding:18px 20px 0;display:flex;justify-content:space-between;gap:12px;align-items:flex-start
+    }
+    .card-head h3{margin:0;font-size:1rem}
+    .card-head p{margin:3px 0 0;color:var(--muted);font-size:.77rem}
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:17px}
+    .kpi-card{
+      background:var(--surface);border:1px solid var(--border);border-radius:18px;
+      padding:18px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm)
+    }
+    .kpi-card:after{
+      content:"";position:absolute;width:85px;height:85px;border-radius:50%;
+      left:-28px;top:-30px;background:var(--kpi-color,#6366f1);opacity:.08
+    }
+    .kpi-label{color:var(--muted);font-size:.76rem;font-weight:750;margin-bottom:9px}
+    .kpi-value{font-size:1.65rem;font-weight:900;line-height:1.15;direction:ltr;text-align:right}
+    .kpi-unit{font-size:.72rem;color:var(--muted);font-weight:700;margin-right:4px}
+    .kpi-method{font-size:.68rem;color:var(--muted-2);margin-top:9px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .chart-card{min-width:0;overflow:hidden}
+    .chart-wrap{padding:13px 17px 19px;position:relative}
+    .chart-wrap canvas{max-height:315px;width:100%!important}
+    .insight-list{display:grid;gap:10px;padding:16px 20px 20px}
+    .insight{
+      border:1px solid var(--border);border-radius:13px;padding:12px 13px;
+      background:var(--surface-2);display:flex;align-items:flex-start;gap:10px;font-size:.82rem
+    }
+    .insight-dot{width:9px;height:9px;border-radius:50%;margin-top:7px;flex:0 0 auto;background:var(--primary)}
+    .section-gap{margin-top:17px}
+    .filter-panel{
+      background:var(--surface);border:1px solid var(--border);border-radius:18px;
+      padding:15px;margin-bottom:17px;box-shadow:var(--shadow-sm)
+    }
+    .filter-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+    .filter-head h3{font-size:.88rem;margin:0}
+    .filters{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px}
+    .filter-box{padding:9px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border)}
+    .filter-box label{display:block;font-size:.68rem;color:var(--muted);font-weight:800;margin-bottom:5px}
+    .filter-box select,.filter-box input{width:100%;padding:7px;font-size:.76rem}
+    .range-pair{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .stat-box{padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:16px}
+    .stat-box span{font-size:.72rem;color:var(--muted)}
+    .stat-box strong{display:block;font-size:1.35rem;margin-top:4px;direction:ltr;text-align:right}
+    .table-card{overflow:hidden}
+    .table-toolbar{
+      padding:14px 16px;border-bottom:1px solid var(--border);display:flex;
+      align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap
+    }
+    .search-box{position:relative;min-width:250px}
+    .search-box input{width:100%;padding-right:34px}
+    .search-box:before{content:"⌕";position:absolute;right:11px;top:7px;color:var(--muted)}
+    .table-wrap{overflow:auto;max-height:570px}
+    table{width:100%;border-collapse:separate;border-spacing:0;font-size:.79rem}
+    th,td{
+      padding:10px 12px;border-bottom:1px solid var(--border);text-align:right;
+      vertical-align:middle;white-space:nowrap;max-width:280px;overflow:hidden;text-overflow:ellipsis
+    }
+    th{
+      position:sticky;top:0;background:var(--surface-2);z-index:3;
+      color:var(--muted);font-size:.7rem;font-weight:900
+    }
+    tr:hover td{background:rgba(99,102,241,.035)}
+    .sortable{cursor:pointer}
+    .frozen-cell{position:sticky!important;right:0;z-index:4;background:var(--surface)!important;box-shadow:-5px 0 9px rgba(15,23,42,.05)}
+    th.frozen-cell{z-index:6;background:var(--surface-2)!important}
+    .cell-input{width:100%;min-width:100px;padding:5px 7px!important;font-size:.77rem}
+    .pagination{
+      padding:13px 16px;display:flex;align-items:center;justify-content:space-between;
+      border-top:1px solid var(--border);gap:12px;flex-wrap:wrap
+    }
+    .page-controls{display:flex;gap:5px;align-items:center}
+    .page-btn{
+      min-width:34px;height:33px;border-radius:9px;border:1px solid var(--border);
+      background:var(--surface);color:var(--text)
+    }
+    .page-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .badge{
+      display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;
+      font-size:.67rem;font-weight:850;background:var(--surface-3);color:var(--primary)
+    }
+    .badge.green{background:#ecfdf5;color:#047857}
+    .badge.red{background:#fef2f2;color:#b91c1c}
+    .badge.yellow{background:#fffbeb;color:#b45309}
+    body.dark .badge.green{background:rgba(16,185,129,.12);color:#6ee7b7}
+    body.dark .badge.red{background:rgba(239,68,68,.12);color:#fca5a5}
+    body.dark .badge.yellow{background:rgba(245,158,11,.12);color:#fcd34d}
+    .quality-layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px}
+    .gauge-card{display:grid;place-items:center;text-align:center;padding:24px}
+    .gauge{width:190px;height:190px;position:relative}
+    .gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+    .gauge-bg,.gauge-value{fill:none;stroke-width:13}
+    .gauge-bg{stroke:var(--border)}
+    .gauge-value{stroke:var(--green);stroke-linecap:round;transition:stroke-dashoffset .6s}
+    .gauge-center{position:absolute;inset:0;display:grid;place-content:center}
+    .gauge-score{font-size:2.2rem;font-weight:950;direction:ltr}
+    .quality-items{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+    .quality-item{
+      padding:15px;border:1px solid var(--border);background:var(--surface-2);border-radius:14px
+    }
+    .quality-item .qtop{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:.74rem}
+    .quality-item strong{font-size:1.1rem;direction:ltr}
+    .progress{height:6px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:9px}
+    .progress span{display:block;height:100%;background:var(--primary);border-radius:99px}
+    .cleaning-list{display:grid;gap:11px}
+    .clean-item{
+      background:var(--surface);border:1px solid var(--border);border-radius:17px;
+      padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:15px;align-items:center
+    }
+    .clean-item h4{margin:0 0 5px;font-size:.9rem}
+    .clean-item p{margin:0;color:var(--muted);font-size:.76rem}
+    .clean-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+    .matrix-wrap{overflow:auto;padding:15px 20px 20px}
+    .matrix{border-collapse:separate;border-spacing:3px;width:auto;min-width:100%}
+    .matrix th,.matrix td{position:static;text-align:center;border:0;border-radius:7px;padding:8px;max-width:130px}
+    .matrix td{font-weight:800;direction:ltr}
+    .boxplot{padding:16px 20px 22px;overflow:auto}
+    .boxplot svg{min-width:620px;width:100%;height:150px}
+    .ask-layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:16px}
+    .chat-card{min-height:570px;display:flex;flex-direction:column}
+    .chat-messages{padding:19px;display:flex;flex-direction:column;gap:12px;overflow:auto;flex:1;max-height:500px}
+    .message{max-width:82%;padding:12px 14px;border-radius:15px;font-size:.84rem;white-space:pre-line}
+    .message.ai{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border);border-bottom-right-radius:4px}
+    .message.user{align-self:flex-end;background:var(--primary);color:#fff;border-bottom-left-radius:4px}
+    .chat-input{border-top:1px solid var(--border);padding:13px;display:flex;gap:8px}
+    .chat-input textarea{resize:none;min-height:48px;max-height:120px;flex:1}
+    .prompt-list{padding:15px;display:grid;gap:8px}
+    .prompt-btn{
+      text-align:right;padding:10px 12px;border-radius:11px;border:1px solid var(--border);
+      background:var(--surface-2);color:var(--text);font-size:.76rem
+    }
+    .report-paper{
+      background:#fff;color:#172033;border-radius:5px;box-shadow:0 15px 50px rgba(15,23,42,.12);
+      padding:48px;max-width:960px;margin:auto;direction:rtl
+    }
+    .report-paper h1{font-size:2rem;letter-spacing:0;margin:0}
+    .report-paper h2{font-size:1.18rem;color:#3730a3;border-bottom:2px solid #e0e7ff;padding-bottom:7px;margin-top:30px}
+    .report-paper h3{font-size:.95rem}
+    .report-paper p,.report-paper li{font-size:.82rem;line-height:1.9}
+    .report-paper table{font-size:.72rem}
+    .report-paper th{position:static;background:#eef2ff;color:#3730a3}
+    .report-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .report-kpi{border:1px solid #e2e8f0;padding:13px;border-radius:10px}
+    .report-kpi small{color:#64748b}
+    .report-kpi strong{display:block;font-size:1.1rem;margin-top:5px}
+    .report-chart{width:100%;max-height:430px;object-fit:contain;margin:10px 0}
+    .export-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .export-card{padding:19px}
+    .export-card h3{margin:0 0 5px;font-size:1rem}
+    .export-card p{margin:0 0 14px;color:var(--muted);font-size:.76rem}
+    .export-actions{display:flex;gap:7px;flex-wrap:wrap}
+    .empty{
+      padding:42px 20px;text-align:center;color:var(--muted);border:1px dashed var(--border);
+      border-radius:17px;background:var(--surface-2)
+    }
+    .empty-icon{font-size:2rem;margin-bottom:8px}
+    .column-panel{
+      position:fixed;left:22px;top:82px;width:300px;max-height:70vh;overflow:auto;
+      z-index:100;background:var(--surface);border:1px solid var(--border);border-radius:17px;
+      box-shadow:var(--shadow);padding:15px
+    }
+    .column-option{display:flex;align-items:center;gap:8px;padding:7px;font-size:.78rem}
+    .loading-overlay{
+      position:fixed;inset:0;background:rgba(8,15,29,.68);backdrop-filter:blur(9px);
+      z-index:500;display:grid;place-items:center;padding:20px
+    }
+    .loading-card{
+      width:min(680px,100%);max-height:90vh;overflow:auto;background:var(--surface);
+      border:1px solid var(--border);border-radius:26px;padding:25px;box-shadow:0 30px 100px rgba(0,0,0,.3)
+    }
+    .loading-title{display:flex;align-items:center;gap:13px;margin-bottom:18px}
+    .loader{
+      width:41px;height:41px;border-radius:50%;border:4px solid var(--border);
+      border-top-color:var(--primary);animation:spin .75s linear infinite
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .pipeline{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+    .pipeline-step{
+      display:flex;align-items:center;gap:9px;padding:9px 11px;border:1px solid var(--border);
+      border-radius:11px;font-size:.76rem;color:var(--muted)
+    }
+    .pipeline-step .step-dot{width:19px;height:19px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);font-size:.67rem}
+    .pipeline-step.active{border-color:#a5b4fc;color:var(--primary);background:var(--surface-3)}
+    .pipeline-step.done{color:#047857;border-color:#a7f3d0}
+    .pipeline-step.done .step-dot{background:#10b981;color:#fff}
+    .load-progress{height:8px;background:var(--border);border-radius:99px;margin-top:18px;overflow:hidden}
+    .load-progress span{height:100%;display:block;background:linear-gradient(90deg,var(--primary),var(--cyan));width:0;transition:.3s}
+    .toast-stack{position:fixed;left:20px;bottom:20px;z-index:700;display:grid;gap:9px}
+    .toast{
+      width:min(370px,calc(100vw - 40px));padding:12px 14px;border-radius:13px;
+      background:var(--navy);color:var(--bg);box-shadow:var(--shadow);font-size:.79rem;
+      animation:toastIn .25s ease
+    }
+    .toast.error{background:#b91c1c;color:#fff}
+    .toast.success{background:#047857;color:#fff}
+    @keyframes toastIn{from{opacity:0;transform:translateY(12px)}}
+    .domain-confidence{font-size:.7rem;color:var(--muted)}
+    .original-note{padding:11px 13px;border:1px solid #bae6fd;background:#f0f9ff;color:#0369a1;border-radius:12px;font-size:.76rem}
+    body.dark .original-note{background:rgba(14,165,233,.08);border-color:#164e63;color:#7dd3fc}
+
+    @media(max-width:1100px){
+      .hero-grid{gap:35px}
+      .kpi-grid{grid-template-columns:repeat(2,1fr)}
+      .filters{grid-template-columns:repeat(3,1fr)}
+      .export-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:900px){
+      :root{--sidebar:0px}
+      .hero-grid{grid-template-columns:1fr}
+      .hero-copy{text-align:center}
+      .hero-lead{margin-left:auto;margin-right:auto}
+      .hero-actions,.trust-row{justify-content:center}
+      .feature-grid{grid-template-columns:1fr}
+      .sidebar{
+        position:fixed;bottom:0;top:auto;right:0;left:0;height:67px;padding:7px;
+        border-left:0;border-top:1px solid var(--border);overflow-x:auto;overflow-y:hidden
+      }
+      .side-nav{flex-direction:row;min-width:max-content;height:100%}
+      .nav-item{width:auto;min-width:75px;flex-direction:column;gap:1px;padding:6px 9px;font-size:.61rem;justify-content:center}
+      .nav-icon{font-size:1rem}
+      .nav-group-title,.sidebar-privacy{display:none}
+      .app-layout{display:block}
+      .app-main{padding-bottom:90px}
+      .quality-layout,.ask-layout{grid-template-columns:1fr}
+      .filters{grid-template-columns:repeat(2,1fr)}
+      .app-header .brand-sub,.file-chip .file-meta{display:none}
+    }
+    @media(max-width:650px){
+      .container{width:min(100% - 22px,1180px)}
+      .top-actions .desktop-only,.app-header .desktop-only{display:none}
+      .hero{padding-top:28px}
+      h1{font-size:2.45rem;letter-spacing:-1px}
+      .upload-card{padding:10px;border-radius:22px}
+      .drop-zone{min-height:310px;padding:22px}
+      .app-header{padding:0 11px}
+      .app-main{padding:15px 11px 85px}
+      .workspace-toolbar{align-items:stretch}
+      .toolbar-group{width:100%}
+      .toolbar-group select{flex:1}
+      .kpi-grid,.grid-2,.grid-3,.quality-items,.stats-grid,.export-grid{grid-template-columns:1fr}
+      .filters{grid-template-columns:1fr}
+      .page-heading{flex-direction:column}
+      .clean-item{grid-template-columns:1fr}
+      .search-box{min-width:100%;width:100%}
+      .pipeline{grid-template-columns:1fr}
+      .report-paper{padding:24px 17px}
+      .report-kpis{grid-template-columns:repeat(2,1fr)}
+      .top-nav{height:65px}
+      .feature-grid{gap:11px}
+    }
+    @media print{
+      body{background:#fff}
+      #landingPage,.app-header,.sidebar,.workspace-toolbar,.page-heading,.report-actions{display:none!important}
+      .app-layout{display:block}
+      .app-main{padding:0}
+      .content-section{display:none!important}
+      #section-report{display:block!important}
+      .report-paper{box-shadow:none;max-width:none;padding:15mm}
+    }
+  </style>
+</head>
+<body>
+  <div id="landingPage">
+    <header class="container top-nav">
+      <div class="brand">
+        <div class="brand-mark">D</div>
+        <div>
+          <div class="brand-name">DATAWISE</div>
+          <span class="brand-sub">AI DATA ANALYST</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <span class="eyebrow desktop-only"><span class="pulse"></span> مجاني بالكامل · بلا تسجيل</span>
+        <button class="icon-btn theme-toggle" title="تبديل المظهر">◐</button>
+        <button class="btn btn-secondary desktop-only open-project-btn">فتح مشروع</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow"><span class="pulse"></span> تحليل محلي وآمن داخل المتصفح</span>
+            <h1>حوّل بياناتك إلى <span class="gradient-text">معلومات قابلة للفهم</span></h1>
+            <p class="hero-lead">ارفع ملفك، وسنقرأ بياناتك ونفحص جودتها ونحللها وننشئ Dashboard وتقريرًا احترافيًا. <strong>ارفع بياناتك، دعنا نفهمها.</strong></p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="heroUploadBtn">ابدأ تحليل بياناتك ←</button>
+              <button class="btn btn-secondary" id="sampleBtn">تجربة بيانات نموذجية</button>
+            </div>
+            <div class="trust-row">
+              <span><b>✓</b> بلا حساب أو بريد</span>
+              <span><b>✓</b> بلا حدود أو Credits</span>
+              <span><b>✓</b> بلا Watermark</span>
+              <span><b>✓</b> الأصل محفوظ دائمًا</span>
+            </div>
+          </div>
+
+          <div class="upload-card">
+            <div class="drop-zone" id="dropZone">
+              <div>
+                <div class="upload-icon">⇧</div>
+                <h3>اسحب ملف البيانات وأفلته هنا</h3>
+                <p>أو اختر ملفًا من جهازك. يبدأ التحليل تلقائيًا بعد القراءة.</p>
+                <button class="btn btn-primary" id="browseBtn">اختيار ملف</button>
+                <div class="formats">CSV · XLS · XLSX · XLSM · TSV · JSON · NDJSON · XML · ODS · PARQUET · TXT</div>
+              </div>
+            </div>
+            <div class="privacy-note">🔒 لا تُرسل بياناتك إلى خادم. تتم المعالجة محليًا داخل هذا المتصفح.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="container">
+          <div class="section-title">
+            <h2>من الملف الخام إلى قرار واضح</h2>
+            <p>لا قوالب ثابتة ولا مؤشرات مخترعة؛ كل نتيجة تُحسب من الملف الذي تختاره.</p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card"><div class="ficon">◎</div><h3>فهم تلقائي للبيانات</h3><p>اكتشاف الجداول والأعمدة والأنواع والفئات والتواريخ والعملات والنسب دون افتراض المجال مسبقًا.</p></article>
+            <article class="feature-card"><div class="ficon">◇</div><h3>جودة وتنظيف قابلان للتحكم</h3><p>قياس فعلي للجودة واقتراح إصلاحات مع تطبيق أو رفض كل خطوة، مع بقاء البيانات الأصلية دون تعديل.</p></article>
+            <article class="feature-card"><div class="ficon">⌁</div><h3>Dashboard يتغير مع ملفك</h3><p>مؤشرات ورسوم وفلاتر واتجاهات وعلاقات تُبنى تلقائيًا وفق الأعمدة والبيانات المتاحة.</p></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="landing-footer">
+      <div class="container footer-inner">
+        <strong>DATAWISE – AI DATA ANALYST</strong>
+        <span>منصة مجانية، محلية، بلا تسجيل أو اشتراك أو دفع.</span>
+      </div>
+    </footer>
+  </div>
+
+  <div id="appShell" class="hidden">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-mark">D</div>
+        <div>
+          <div class="brand-name">DATAWISE</div>
+          <span class="brand-sub">AI DATA ANALYST</span>
+        </div>
+      </div>
+      <div class="file-chip">
+        <div class="file-icon">▤</div>
+        <div class="file-meta truncate">
+          <strong id="headerFileName" class="truncate">—</strong>
+          <div id="headerFileMeta" class="muted small">—</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn theme-toggle" title="تبديل المظهر">◐</button>
+        <button class="btn btn-secondary btn-sm desktop-only" id="newFileBtn">ملف جديد</button>
+        <button class="btn btn-secondary btn-sm desktop-only open-project-btn">فتح مشروع</button>
+        <button class="btn btn-primary btn-sm" id="saveProjectBtn">حفظ المشروع</button>
+      </div>
+    </header>
+
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="nav-group-title">مساحة التحليل</div>
+        <nav class="side-nav">
+          <button class="nav-item active" data-section="dashboard"><span class="nav-icon">⌂</span><span>Dashboard</span></button>
+          <button class="nav-item" data-section="overview"><span class="nav-icon">▦</span><span>نظرة عامة</span></button>
+          <button class="nav-item" data-section="quality"><span class="nav-icon">✓</span><span>جودة البيانات</span></button>
+          <button class="nav-item" data-section="cleaning"><span class="nav-icon">✦</span><span>التنظيف</span></button>
+          <button class="nav-item" data-section="analysis"><span class="nav-icon">⌁</span><span>التحليل</span></button>
+          <button class="nav-item" data-section="table"><span class="nav-icon">▤</span><span>جدول البيانات</span></button>
+          <button class="nav-item" data-section="ask"><span class="nav-icon">◌</span><span>اسأل بياناتك</span></button>
+          <button class="nav-item" data-section="report"><span class="nav-icon">▧</span><span>التقرير</span></button>
+          <button class="nav-item" data-section="export"><span class="nav-icon">⇩</span><span>التصدير</span></button>
+        </nav>
+        <div class="sidebar-privacy">🔒 تتم معالجة بياناتك محليًا. لا يوجد Backend ولا تُرسل الملفات إلى أي خدمة خارجية.</div>
+      </aside>
+
+      <main class="app-main">
+        <div class="workspace-toolbar">
+          <div class="toolbar-group">
+            <label class="field-inline">الجدول / الورقة
+              <select id="sheetSelector"></select>
+            </label>
+            <label class="field-inline">المجال المحتمل
+              <select id="domainSelector"></select>
+            </label>
+            <span id="domainConfidence" class="domain-confidence"></span>
+          </div>
+          <div class="toolbar-group">
+            <span id="filteredStatus" class="data-status">—</span>
+            <button class="btn btn-soft btn-sm" id="createReportTop">إنشاء تقرير</button>
+          </div>
+        </div>
+
+        <section id="section-dashboard" class="content-section active"></section>
+        <section id="section-overview" class="content-section"></section>
+        <section id="section-quality" class="content-section"></section>
+        <section id="section-cleaning" class="content-section"></section>
+        <section id="section-analysis" class="content-section"></section>
+        <section id="section-table" class="content-section"></section>
+        <section id="section-ask" class="content-section"></section>
+        <section id="section-report" class="content-section"></section>
+        <section id="section-export" class="content-section"></section>
+      </main>
+    </div>
+  </div>
+
+  <input id="fileInput" type="file" class="hidden" accept=".csv,.xls,.xlsx,.xlsm,.tsv,.json,.ndjson,.xml,.ods,.parquet,.txt">
+  <input id="projectInput" type="file" class="hidden" accept=".datawise_project,.json">
+
+  <div id="columnPanel" class="column-panel hidden"></div>
+
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loading-card">
+      <div class="loading-title">
+        <div class="loader"></div>
+        <div>
+          <h2 style="margin:0;font-size:1.25rem">DATAWISE يقرأ بياناتك</h2>
+          <div id="loadingMessage" class="muted small">بدء المعالجة المحلية...</div>
+        </div>
+      </div>
+      <div id="pipeline" class="pipeline"></div>
+      <div class="load-progress"><span id="loadProgress"></span></div>
+      <div id="loadingDetail" class="muted small" style="margin-top:9px"></div>
+    </div>
+  </div>
+
+  <div id="toastStack" class="toast-stack"></div>
+
+  <script>
+  (() => {
+    "use strict";
+
+    const MAX_FILE_SIZE = 80 * 1024 * 1024;
+    const MAX_ROWS = 150000;
+    const MAX_COLUMNS = 250;
+    const PAGE_SIZE = 25;
+    const COLORS = ["#4f46e5","#06b6d4","#10b981","#f59e0b","#ef4444","#8b5cf6","#ec4899","#14b8a6","#3b82f6","#84cc16"];
+
+    const pipelineLabels = [
+      "قراءة الملف","اكتشاف الجداول","تحليل الأعمدة","تحديد الأنواع",
+      "فحص الجودة","القيم الناقصة","التكرارات","القيم الشاذة",
+      "العلاقات","KPI","الرسوم","Dashboard"
+    ];
+
+    const domains = [
+      "تلقائي","بيانات عامة","مبيعات","مالية ومحاسبة","موارد بشرية","مخزون",
+      "تسويق","عملاء","تجارة إلكترونية","تعليم","صحة","مشاريع",
+      "إنتاج","عقارات","استبيانات وأبحاث","لوجستيات"
+    ];
+
+    const state = {
+      fileName:"", fileSize:0, fileType:"", sheets:[], sheetIndex:0,
+      baseAnalysis:null, analysis:null, activeSection:"dashboard",
+      filters:{}, filterDefs:[], search:"",
+      sort:{column:null,direction:"asc"}, page:1,
+      hiddenColumns:new Set(), frozen:false, editMode:false,
+      chartMetric:null, chartDimension:null,
+      charts:{}, rejectedSuggestions:new Set(), appliedHistory:[],
+      domainManual:"تلقائي", chat:[], reportHTML:"",
+      projectMeta:null, idCounter:1
+    };
+
+    const $ = s => document.querySelector(s);
+    const $$ = s => [...document.querySelectorAll(s)];
+
+    function escapeHTML(v){
+      return String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    }
+    function escapeXML(v){
+      return String(v ?? "").replace(/[<>&'"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;","'":"&apos;",'"':"&quot;"}[c]));
+    }
+    function safeJSONValue(v){
+      if(typeof v === "bigint") return v.toString();
+      if(v instanceof Date) return v.toISOString();
+      if(typeof v === "number" && !Number.isFinite(v)) return null;
+      return v;
+    }
+    function deepSerializable(obj){
+      return JSON.parse(JSON.stringify(obj,(_,v)=>safeJSONValue(v)));
+    }
+    function normalizeDigits(v){
+      return String(v).replace(/[٠-٩]/g,d=>"0123456789"["٠١٢٣٤٥٦٧٨٩".indexOf(d)])
+        .replace(/[۰-۹]/g,d=>"0123456789"["۰۱۲۳۴۵۶۷۸۹".indexOf(d)]);
+    }
+    function normalizeText(v){
+      return normalizeDigits(v ?? "").trim().replace(/\s+/g," ").toLowerCase();
+    }
+    function isMissing(v){
+      return v === null || v === undefined || (typeof v === "string" && v.trim() === "");
+    }
+    function valueString(v){
+      if(isMissing(v)) return "";
+      if(v instanceof Date) return v.toISOString();
+      if(typeof v === "object") return JSON.stringify(v,(_,x)=>safeJSONValue(x));
+      return String(v);
+    }
+    function parseNumber(v){
+      if(isMissing(v) || typeof v === "boolean") return null;
+      if(typeof v === "number") return Number.isFinite(v) ? v : null;
+      if(typeof v === "bigint") return Number(v);
+      let s = normalizeDigits(v).trim();
+      if(!s) return null;
+      const negativeParens = /^\(.*\)$/.test(s);
+      s = s.replace(/[()]/g,"");
+      s = s.replace(/[٪%]/g,"");
+      s = s.replace(/[٬\s]/g,"");
+      s = s.replace(/[$€£¥₹₽₺﷼₨]|ر\.?س|د\.?[إا]?\b|ج\.?م|aed|sar|usd|eur|gbp/gi,"");
+      s = s.replace(/٫/g,".");
+      if(s.includes(",") && s.includes(".")) s = s.replace(/,/g,"");
+      else if(s.includes(",")){
+        const parts = s.split(",");
+        if(parts.length === 2 && parts[1].length > 0 && parts[1].length <= 2) s = parts[0]+"."+parts[1];
+        else s = s.replace(/,/g,"");
+      }
+      s = s.replace(/[^\d.+\-eE]/g,"");
+      if(!s || !/^[-+]?(?:\d+\.?\d*|\.\d+)(?:e[-+]?\d+)?$/i.test(s)) return null;
+      let n = Number(s);
+      if(negativeParens) n = -Math.abs(n);
+      return Number.isFinite(n) ? n : null;
+    }
+    function parseDate(v){
+      if(v instanceof Date && !isNaN(v)) return new Date(v);
+      if(typeof v === "number" || typeof v === "bigint" || isMissing(v)) return null;
+      const s = normalizeDigits(v).trim();
+      if(!s || /^\d{1,4}$/.test(s)) return null;
+      let m = s.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})(?:[ T].*)?$/);
+      if(m){
+        const d = new Date(+m[1],+m[2]-1,+m[3]);
+        return d.getFullYear()===+m[1] && d.getMonth()===+m[2]-1 && d.getDate()===+m[3] ? d : null;
+      }
+      m = s.match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})(?:[ T].*)?$/);
+      if(m){
+        const d = new Date(+m[3],+m[2]-1,+m[1]);
+        return d.getFullYear()===+m[3] && d.getMonth()===+m[2]-1 && d.getDate()===+m[1] ? d : null;
+      }
+      if(!/[-/:T]|[A-Za-z\u0600-\u06ff]{3,}/.test(s)) return null;
+      const t = Date.parse(s);
+      return Number.isFinite(t) ? new Date(t) : null;
+    }
+    function formatBytes(bytes){
+      if(!bytes) return "0 B";
+      const units=["B","KB","MB","GB"];
+      const i=Math.min(Math.floor(Math.log(bytes)/Math.log(1024)),3);
+      return `${(bytes/Math.pow(1024,i)).toFixed(i?1:0)} ${units[i]}`;
+    }
+    function formatNumber(v, digits=2){
+      if(v === null || v === undefined || !Number.isFinite(Number(v))) return "—";
+      const n=Number(v), abs=Math.abs(n);
+      const opts={maximumFractionDigits:abs<10?digits:Math.min(digits,2)};
+      return new Intl.NumberFormat("ar-EG",opts).format(n);
+    }
+    function formatCompact(v){
+      if(!Number.isFinite(Number(v))) return "—";
+      return new Intl.NumberFormat("ar-EG",{notation:Math.abs(v)>=10000?"compact":"standard",maximumFractionDigits:2}).format(v);
+    }
+    function percent(n,d){
+      return d ? (n/d)*100 : 0;
+    }
+    function quantile(sorted,q){
+      if(!sorted.length) return null;
+      const pos=(sorted.length-1)*q, base=Math.floor(pos), rest=pos-base;
+      return sorted[base+1]!==undefined ? sorted[base]+rest*(sorted[base+1]-sorted[base]) : sorted[base];
+    }
+    function median(arr){
+      const a=[...arr].sort((x,y)=>x-y);
+      return quantile(a,.5);
+    }
+    function mode(arr){
+      if(!arr.length) return null;
+      const map=new Map(); let best=null,bestN=0;
+      for(const x of arr){
+        const k=String(x), n=(map.get(k)||0)+1; map.set(k,n);
+        if(n>bestN){bestN=n;best=x}
+      }
+      return bestN>1 ? best : null;
+    }
+    function debounce(fn,ms=250){
+      let t; return (...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),ms)};
+    }
+    function sleep(ms=40){return new Promise(r=>setTimeout(r,ms))}
+    function downloadBlob(blob,name){
+      const url=URL.createObjectURL(blob),a=document.createElement("a");
+      a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1200);
+    }
+    function fileBase(){
+      return (state.fileName || "datawise").replace(/\.[^.]+$/,"").replace(/[^\w\u0600-\u06ff-]+/g,"_");
+    }
+    function toast(message,type=""){
+      const el=document.createElement("div");
+      el.className=`toast ${type}`;el.textContent=message;
+      $("#toastStack").appendChild(el);
+      setTimeout(()=>el.remove(),4200);
+    }
+    function addIds(rows){
+      rows.forEach(row=>{
+        if(!Object.prototype.hasOwnProperty.call(row,"__dwid")){
+          Object.defineProperty(row,"__dwid",{value:state.idCounter++,writable:true,enumerable:false});
+        }
+      });
+      return rows;
+    }
+    function currentSheet(){return state.sheets[state.sheetIndex]}
+    function currentRows(){return currentSheet()?.rows || []}
+    function currentHeaders(){return currentSheet()?.headers || []}
+    function originalRows(){return currentSheet()?.originalRows || []}
+
+    function setPipeline(index,message="",detail=""){
+      $$(".pipeline-step").forEach((el,i)=>{
+        el.classList.toggle("active",i===index);
+        el.classList.toggle("done",i<index);
+        el.querySelector(".step-dot").textContent=i<index?"✓":String(i+1);
+      });
+      $("#loadProgress").style.width=`${Math.max(2,(index/pipelineLabels.length)*100)}%`;
+      if(message) $("#loadingMessage").textContent=message;
+      $("#loadingDetail").textContent=detail;
+    }
+    function showLoading(){
+      $("#pipeline").innerHTML=pipelineLabels.map((x,i)=>`<div class="pipeline-step"><span class="step-dot">${i+1}</span>${x}</div>`).join("");
+      $("#loadingOverlay").classList.remove("hidden");
+      setPipeline(0,"قراءة الملف...");
+    }
+    function hideLoading(){
+      $$(".pipeline-step").forEach(el=>{el.classList.remove("active");el.classList.add("done");el.querySelector(".step-dot").textContent="✓"});
+      $("#loadProgress").style.width="100%";
+      setTimeout(()=>$("#loadingOverlay").classList.add("hidden"),300);
+    }
+
+    function sanitizeHeaders(values){
+      const used=new Map();
+      return values.map((v,i)=>{
+        let name=isMissing(v)?`عمود ${i+1}`:valueString(v).trim();
+        const count=(used.get(name)||0)+1;used.set(name,count);
+        return count>1?`${name} (${count})`:name;
+      });
+    }
+    function detectHeaderRow(aoa){
+      if(!aoa.length) return 0;
+      let best=0,bestScore=-Infinity;
+      for(let i=0;i<Math.min(8,aoa.length);i++){
+        const row=aoa[i]||[], vals=row.filter(v=>!isMissing(v));
+        if(!vals.length) continue;
+        const text=vals.filter(v=>typeof v==="string" && parseNumber(v)===null).length;
+        const unique=new Set(vals.map(valueString)).size;
+        const score=vals.length*2+text+unique-i*.8;
+        if(score>bestScore){bestScore=score;best=i}
+      }
+      return best;
+    }
+    function aoaToSheet(aoa,name){
+      const nonEmpty=aoa.filter(r=>Array.isArray(r)&&r.some(v=>!isMissing(v)));
+      if(!nonEmpty.length) return {name,headers:[],rows:[],originalRows:[]};
+      const hi=detectHeaderRow(nonEmpty), width=Math.max(...nonEmpty.map(r=>r.length));
+      const headerRow=Array.from({length:width},(_,i)=>nonEmpty[hi]?.[i]);
+      const headers=sanitizeHeaders(headerRow);
+      const rows=[];
+      for(let r=hi+1;r<nonEmpty.length;r++){
+        const src=nonEmpty[r]||[];
+        if(!src.some(v=>!isMissing(v))) continue;
+        const obj={};
+        headers.forEach((h,c)=>{
+          let v=src[c]===undefined?null:src[c];
+          if(v instanceof Date) v=v.toISOString();
+          else if(typeof v==="bigint") v=v.toString();
+          else if(v && typeof v==="object") v=JSON.stringify(v,(_,x)=>safeJSONValue(x));
+          obj[h]=v;
+        });
+        rows.push(obj);
+      }
+      const original=rows.map(r=>({...r}));
+      addIds(rows);addIds(original);
+      return {name,headers,rows,originalRows:original};
+    }
+    function flattenObject(obj,prefix="",out={}){
+      if(obj===null || obj===undefined) return out;
+      for(const [k,v] of Object.entries(obj)){
+        const key=prefix?`${prefix}.${k}`:k;
+        if(v && typeof v==="object" && !Array.isArray(v) && !(v instanceof Date)) flattenObject(v,key,out);
+        else out[key]=Array.isArray(v)?JSON.stringify(v,(_,x)=>safeJSONValue(x)):safeJSONValue(v);
+      }
+      return out;
+    }
+    function objectRowsToSheet(rows,name){
+      const flat=rows.map(r=>{
+        if(r && typeof r==="object" && !Array.isArray(r)) return flattenObject(r);
+        return {القيمة:safeJSONValue(r)};
+      });
+      const headers=[];
+      const seen=new Set();
+      flat.forEach(r=>Object.keys(r).forEach(k=>{if(!seen.has(k)){seen.add(k);headers.push(k)}}));
+      const normalized=flat.map(r=>Object.fromEntries(headers.map(h=>[h,r[h]===undefined?null:r[h]])));
+      const original=normalized.map(r=>({...r}));
+      addIds(normalized);addIds(original);
+      return {name,headers,rows:normalized,originalRows:original};
+    }
+    function detectDelimiter(text){
+      const sample=text.slice(0,12000);
+      const options=[",","\t",";","|"];
+      let best=",",score=-1;
+      for(const d of options){
+        const lines=sample.split(/\r?\n/).slice(0,8);
+        const counts=lines.map(l=>l.split(d).length-1).filter(Boolean);
+        const s=counts.length ? counts.reduce((a,b)=>a+b,0)-Math.max(...counts)+Math.min(...counts) : 0;
+        if(s>score){score=s;best=d}
+      }
+      return score<=0?null:best;
+    }
+    function parseDelimitedWorker(text,delimiter){
+      return new Promise((resolve,reject)=>{
+        const code=`
+          onmessage=e=>{
+            try{
+              const text=e.data.text,d=e.data.delimiter;let rows=[],row=[],field="",q=false;
+              for(let i=0;i<text.length;i++){
+                const c=text[i],n=text[i+1];
+                if(c==='"'){
+                  if(q&&n==='"'){field+='"';i++}else q=!q;
+                }else if(c===d&&!q){row.push(field);field=""}
+                else if((c==='\\n'||c==='\\r')&&!q){
+                  if(c==='\\r'&&n==='\\n')i++;
+                  row.push(field);field="";rows.push(row);row=[];
+                }else field+=c;
+              }
+              if(field.length||row.length){row.push(field);rows.push(row)}
+              postMessage({rows});
+            }catch(err){postMessage({error:err.message})}
+          }`;
+        const blob=new Blob([code],{type:"application/javascript"}),url=URL.createObjectURL(blob),worker=new Worker(url);
+        worker.onmessage=e=>{worker.terminate();URL.revokeObjectURL(url);e.data.error?reject(new Error(e.data.error)):resolve(e.data.rows)};
+        worker.onerror=e=>{worker.terminate();URL.revokeObjectURL(url);reject(e.error||new Error("تعذر تحليل الملف النصي"))};
+        worker.postMessage({text,delimiter});
+      });
+    }
+    async function parseParquet(file){
+      const hp=await import("https://cdn.jsdelivr.net/npm/hyparquet@1.17.0/+esm");
+      let compressors;
+      try{
+        const mod=await import("https://cdn.jsdelivr.net/npm/hyparquet-compressors@1.1.0/+esm");
+        compressors=mod.compressors;
+      }catch(_){}
+      const buffer=await file.arrayBuffer();
+      return await new Promise((resolve,reject)=>{
+        let settled=false;
+        const done=data=>{
+          if(settled)return;settled=true;
+          if(!Array.isArray(data)) return reject(new Error("تنسيق نتيجة Parquet غير مدعوم"));
+          const rows=data.map(r=>{
+            if(r && !Array.isArray(r) && typeof r==="object") return deepSerializable(r);
+            const obj={};(r||[]).forEach((v,i)=>obj[`عمود ${i+1}`]=safeJSONValue(v));return obj;
+          });
+          resolve([objectRowsToSheet(rows,"Parquet")]);
+        };
+        const fail=e=>{if(!settled){settled=true;reject(e instanceof Error?e:new Error(String(e)))}};
+        try{
+          const opts={file:buffer,compressors,rowFormat:"object",onComplete:done,onError:fail};
+          const fn=hp.parquetReadObjects||hp.parquetRead;
+          const result=fn(opts);
+          if(result&&typeof result.then==="function") result.then(x=>{if(x)done(x)}).catch(fail);
+        }catch(e){fail(e)}
+      });
+    }
+    function xmlElementObject(el){
+      const obj={};
+      [...el.attributes].forEach(a=>obj[`@${a.name}`]=a.value);
+      const children=[...el.children];
+      if(!children.length) return {[el.tagName]:el.textContent.trim()};
+      children.forEach(c=>{
+        const grandchildren=[...c.children];
+        obj[c.tagName]=grandchildren.length?c.textContent.trim():c.textContent.trim();
+      });
+      return obj;
+    }
+    async function parseFile(file){
+      const ext=(file.name.split(".").pop()||"").toLowerCase();
+      if(file.size>MAX_FILE_SIZE) throw new Error(`حجم الملف ${formatBytes(file.size)} يتجاوز حد المعالجة الآمنة في هذا المتصفح (${formatBytes(MAX_FILE_SIZE)}). قسّم الملف إلى أجزاء أصغر.`);
+      if(["xlsx","xls","xlsm","ods"].includes(ext)){
+        const buffer=await file.arrayBuffer();
+        const wb=XLSX.read(buffer,{type:"array",cellDates:true});
+        return wb.SheetNames.map(name=>{
+          const ws=wb.Sheets[name],aoa=XLSX.utils.sheet_to_json(ws,{header:1,defval:null,raw:true});
+          return aoaToSheet(aoa,name);
+        }).filter(s=>s.headers.length);
+      }
+      if(ext==="parquet") return parseParquet(file);
+      const text=await file.text();
+      if(ext==="json"){
+        const data=JSON.parse(text);
+        if(Array.isArray(data)) return [objectRowsToSheet(data,"JSON")];
+        const arrays=Object.entries(data).filter(([,v])=>Array.isArray(v));
+        if(arrays.length) return arrays.map(([k,v])=>objectRowsToSheet(v,k));
+        return [objectRowsToSheet([data],"JSON")];
+      }
+      if(ext==="ndjson"){
+        const rows=text.split(/\r?\n/).filter(x=>x.trim()).map((line,i)=>{
+          try{return JSON.parse(line)}catch(_){throw new Error(`JSON غير صالح في السطر ${i+1}`)}
+        });
+        return [objectRowsToSheet(rows,"NDJSON")];
+      }
+      if(ext==="xml"){
+        const doc=new DOMParser().parseFromString(text,"application/xml");
+        if(doc.querySelector("parsererror")) throw new Error("ملف XML غير صالح.");
+        const root=doc.documentElement;
+        let records=[...root.children];
+        if(records.length===1 && records[0].children.length>1) records=[...records[0].children];
+        const grouped={};
+        records.forEach(el=>(grouped[el.tagName]??=[]).push(el));
+        const best=Object.entries(grouped).sort((a,b)=>b[1].length-a[1].length)[0];
+        const selected=best?best[1]:[root];
+        return [objectRowsToSheet(selected.map(el=>{
+          const children=[...el.children];
+          if(!children.length) return {القيمة:el.textContent.trim()};
+          const o={};[...el.attributes].forEach(a=>o[`@${a.name}`]=a.value);
+          children.forEach(c=>o[c.tagName]=c.children.length?c.textContent.trim():c.textContent.trim());
+          return o;
+        }),root.tagName)];
+      }
+      const delimiter=ext==="tsv"?"\t":detectDelimiter(text);
+      if(!delimiter){
+        const rows=text.split(/\r?\n/).filter(Boolean).map(x=>[x]);
+        return [aoaToSheet([["النص"],...rows],"TXT")];
+      }
+      const aoa=await parseDelimitedWorker(text,delimiter);
+      return [aoaToSheet(aoa,ext.toUpperCase())];
+    }
+
+    function profileColumns(rows,headers){
+      return headers.map(name=>{
+        const values=rows.map(r=>r[name]);
+        const nonMissing=values.filter(v=>!isMissing(v));
+        const uniqueMap=new Map();
+        let numeric=0,date=0,bool=0,currencyHits=0,percentHits=0,leadingZero=0;
+        for(const v of nonMissing){
+          uniqueMap.set(normalizeText(valueString(v)),v);
+          if(parseNumber(v)!==null) numeric++;
+          if(parseDate(v)!==null) date++;
+          if(typeof v==="boolean" || /^(true|false|yes|no|نعم|لا)$/i.test(String(v).trim())) bool++;
+          if(/[$€£¥﷼₨]|ر\.?س|د\.?[إا]?|ج\.?م|usd|sar|eur|gbp/i.test(String(v))) currencyHits++;
+          if(/[%٪]/.test(String(v))) percentHits++;
+          if(/^0\d+/.test(String(v).trim())) leadingZero++;
+        }
+        const n=nonMissing.length, ratio=x=>n?x/n:0, lname=normalizeText(name);
+        const idName=/(^|[\s_.-])(id|code|key|uuid|رقم|معرف|كود|رمز)([\s_.-]|$)/i.test(lname);
+        const percentName=/(percent|percentage|rate|ratio|نسبة|معدل)/i.test(lname);
+        const currencyName=/(amount|revenue|sales|price|cost|profit|salary|income|expense|balance|budget|قيمة|مبلغ|إيراد|مبيعات|سعر|تكلفة|ربح|راتب|دخل|مصروف|رصيد|ميزانية)/i.test(lname);
+        let type="نص";
+        if(n===0) type="فارغ";
+        else if(idName || (leadingZero>0 && uniqueMap.size/n>.75)) type="معرّف";
+        else if(ratio(bool)>=.9) type="منطقي";
+        else if(ratio(date)>=.78 && date>=2) type="تاريخ";
+        else if(ratio(numeric)>=.78){
+          if(percentHits || percentName) type="نسبة مئوية";
+          else if(currencyHits || currencyName) type="عملة";
+          else type="رقم";
+        }else if(uniqueMap.size<=Math.min(80,Math.max(8,Math.round(n*.28)))) type="فئة";
+        const invalid=(type==="رقم"||type==="عملة"||type==="نسبة مئوية")
+          ? nonMissing.filter(v=>parseNumber(v)===null).length
+          : type==="تاريخ"?nonMissing.filter(v=>parseDate(v)===null).length:0;
+        const sample=nonMissing.find(v=>!isMissing(v));
+        let unit="";
+        if(type==="نسبة مئوية") unit="%";
+        if(type==="عملة"){
+          const sv=nonMissing.map(String).join(" ");
+          unit=sv.includes("$")?"$":sv.includes("€")?"€":sv.includes("£")?"£":/(ر\.?س|﷼)/.test(sv)?"ر.س":"عملة";
+        }
+        return {
+          name,type,total:rows.length,count:n,missing:rows.length-n,unique:uniqueMap.size,
+          sample:sample===undefined?null:sample,invalid,unit,
+          numericRatio:ratio(numeric),dateRatio:ratio(date)
+        };
+      });
+    }
+    function calculateNumericStats(rows,profiles){
+      const stats={},outliers=[];
+      for(const p of profiles.filter(x=>["رقم","عملة","نسبة مئوية"].includes(x.type))){
+        const nums=rows.map(r=>parseNumber(r[p.name])).filter(v=>v!==null).sort((a,b)=>a-b);
+        if(!nums.length) continue;
+        const mean=nums.reduce((a,b)=>a+b,0)/nums.length;
+        const q1=quantile(nums,.25),med=quantile(nums,.5),q3=quantile(nums,.75),iqr=q3-q1;
+        const low=q1-1.5*iqr,high=q3+1.5*iqr;
+        const outs=nums.filter(v=>v<low||v>high);
+        const variance=nums.reduce((s,x)=>s+(x-mean)**2,0)/nums.length;
+        stats[p.name]={
+          count:nums.length,sum:nums.reduce((a,b)=>a+b,0),mean,median:med,mode:mode(nums),
+          min:nums[0],max:nums[nums.length-1],range:nums[nums.length-1]-nums[0],
+          variance,std:Math.sqrt(variance),q1,q3,p10:quantile(nums,.1),p90:quantile(nums,.9),
+          lowFence:low,highFence:high,unit:p.unit
+        };
+        if(outs.length) outliers.push({
+          column:p.name,count:outs.length,ratio:percent(outs.length,nums.length),
+          values:outs.slice(0,8),low,high
+        });
+      }
+      return {stats,outliers};
+    }
+    function duplicateInfo(rows,headers){
+      const seen=new Map(),indices=[];
+      rows.forEach((r,i)=>{
+        const key=JSON.stringify(headers.map(h=>safeJSONValue(r[h])));
+        if(seen.has(key)) indices.push(i);else seen.set(key,i);
+      });
+      return {count:indices.length,indices};
+    }
+    function inconsistencyInfo(rows,profiles){
+      const details=[];let total=0;
+      for(const p of profiles.filter(x=>x.type==="فئة"||x.type==="نص")){
+        if(p.unique>150) continue;
+        const groups=new Map();
+        rows.forEach(r=>{
+          const v=r[p.name];if(isMissing(v))return;
+          const norm=normalizeText(v);
+          if(!groups.has(norm))groups.set(norm,new Map());
+          const variants=groups.get(norm),raw=valueString(v);
+          variants.set(raw,(variants.get(raw)||0)+1);
+        });
+        let affected=0,examples=[];
+        groups.forEach((variants)=>{
+          if(variants.size>1){
+            const entries=[...variants.entries()].sort((a,b)=>b[1]-a[1]);
+            affected+=entries.slice(1).reduce((s,x)=>s+x[1],0);
+            if(examples.length<3) examples.push(entries.map(x=>x[0]).join(" / "));
+          }
+        });
+        if(affected){details.push({column:p.name,count:affected,examples});total+=affected}
+      }
+      return {total,details};
+    }
+    function pearson(xs,ys){
+      const n=xs.length;if(n<3)return null;
+      const mx=xs.reduce((a,b)=>a+b,0)/n,my=ys.reduce((a,b)=>a+b,0)/n;
+      let num=0,dx=0,dy=0;
+      for(let i=0;i<n;i++){const a=xs[i]-mx,b=ys[i]-my;num+=a*b;dx+=a*a;dy+=b*b}
+      return dx&&dy?num/Math.sqrt(dx*dy):null;
+    }
+    function correlations(rows,profiles){
+      const nums=profiles.filter(p=>["رقم","عملة","نسبة مئوية"].includes(p.type)).slice(0,10);
+      const matrix={},pairs=[];
+      nums.forEach(a=>{
+        matrix[a.name]={};
+        nums.forEach(b=>{
+          if(a.name===b.name){matrix[a.name][b.name]=1;return}
+          const xs=[],ys=[];
+          rows.forEach(r=>{const x=parseNumber(r[a.name]),y=parseNumber(r[b.name]);if(x!==null&&y!==null){xs.push(x);ys.push(y)}});
+          const c=pearson(xs,ys);matrix[a.name][b.name]=c;
+          if(nums.indexOf(a)<nums.indexOf(b) && c!==null) pairs.push({a:a.name,b:b.name,value:c,count:xs.length});
+        });
+      });
+      pairs.sort((a,b)=>Math.abs(b.value)-Math.abs(a.value));
+      return {columns:nums.map(x=>x.name),matrix,pairs};
+    }
+    function inferDomain(headers,rows){
+      const corpus=normalizeText(headers.join(" ")+" "+rows.slice(0,100).map(r=>headers.slice(0,8).map(h=>valueString(r[h])).join(" ")).join(" "));
+      const rules={
+        "مبيعات":["sales","revenue","order","customer","product","invoice","مبيعات","إيراد","طلب","عميل","منتج","فاتورة"],
+        "مالية ومحاسبة":["account","debit","credit","balance","expense","profit","asset","liability","مدين","دائن","رصيد","مصروف","ربح","أصل","التزام"],
+        "موارد بشرية":["employee","salary","department","hire","job","attendance","موظف","راتب","قسم","توظيف","مسمى","حضور"],
+        "مخزون":["inventory","stock","sku","warehouse","reorder","quantity","مخزون","مستودع","كمية","إعادة طلب"],
+        "تسويق":["campaign","impression","click","conversion","lead","ctr","حملة","ظهور","نقرة","تحويل","عميل محتمل"],
+        "عملاء":["customer","client","churn","segment","satisfaction","عميل","انسحاب","شريحة","رضا"],
+        "تجارة إلكترونية":["cart","checkout","shipping","order","ecommerce","سلة","شحن","طلب إلكتروني"],
+        "تعليم":["student","grade","score","course","teacher","school","طالب","درجة","مقرر","معلم","مدرسة"],
+        "صحة":["patient","diagnosis","treatment","hospital","doctor","مريض","تشخيص","علاج","مستشفى","طبيب"],
+        "مشاريع":["project","task","milestone","deadline","status","مشروع","مهمة","مرحلة","موعد"],
+        "إنتاج":["production","machine","defect","output","downtime","إنتاج","آلة","عيب","توقف"],
+        "عقارات":["property","rent","area","bedroom","building","عقار","إيجار","مساحة","غرفة","مبنى"],
+        "استبيانات وأبحاث":["survey","respondent","question","response","sample","استبيان","مشارك","سؤال","إجابة","عينة"],
+        "لوجستيات":["shipment","delivery","route","carrier","freight","شحنة","تسليم","مسار","ناقل"],
+      };
+      let best="بيانات عامة",bestScore=0;
+      for(const [domain,words] of Object.entries(rules)){
+        const score=words.reduce((s,w)=>s+(corpus.includes(normalizeText(w))?1:0),0);
+        if(score>bestScore){bestScore=score;best=domain}
+      }
+      return {name:best,confidence:bestScore?Math.min(96,45+bestScore*9):25,hits:bestScore};
+    }
+    function isAdditive(name){
+      return /(sales|revenue|amount|total|cost|expense|profit|quantity|qty|stock|units|budget|income|مبيعات|إيراد|مبلغ|إجمالي|تكلفة|مصروف|ربح|كمية|مخزون|وحدات|ميزانية|دخل)/i.test(normalizeText(name))
+        && !/(rate|ratio|percent|average|avg|سعر|متوسط|معدل|نسبة)/i.test(normalizeText(name));
+    }
+    function primaryDate(profiles){return profiles.find(p=>p.type==="تاريخ")}
+    function primaryCategory(profiles){
+      return profiles.find(p=>p.type==="فئة"&&p.unique>1&&p.unique<=50)
+        || profiles.find(p=>p.type==="نص"&&p.unique>1&&p.unique<=30);
+    }
+    function numericProfiles(profiles){return profiles.filter(p=>["رقم","عملة","نسبة مئوية"].includes(p.type))}
+    function buildKpis(rows,profiles,stats){
+      const kpis=[{name:"عدد السجلات",value:rows.length,unit:"سجل",method:"COUNT(*)"}];
+      const nums=numericProfiles(profiles).filter(p=>stats[p.name]).slice(0,4);
+      for(const p of nums){
+        const s=stats[p.name];
+        if(isAdditive(p.name)){
+          kpis.push({name:`إجمالي ${p.name}`,value:s.sum,unit:p.unit,method:`SUM(${p.name})`});
+        }else{
+          kpis.push({name:`متوسط ${p.name}`,value:s.mean,unit:p.unit,method:`SUM(${p.name}) ÷ COUNT(${p.name})`});
+        }
+        if(kpis.length>=4) break;
+      }
+      const rev=nums.find(p=>/(revenue|sales|إيراد|مبيعات)/i.test(p.name));
+      const profit=nums.find(p=>/(profit|ربح)/i.test(p.name));
+      if(kpis.length<5 && rev&&profit&&stats[rev.name].sum!==0){
+        kpis.push({name:"هامش الربح",value:stats[profit.name].sum/stats[rev.name].sum*100,unit:"%",method:`SUM(${profit.name}) ÷ SUM(${rev.name}) × 100`});
+      }
+      const dateP=primaryDate(profiles),metric=nums[0];
+      if(kpis.length<5 && dateP&&metric){
+        const trend=aggregateTime(rows,dateP.name,metric.name);
+        if(trend.points.length>=2){
+          const first=trend.points[0].value,last=trend.points.at(-1).value;
+          if(first!==0) kpis.push({name:`التغير في ${metric.name}`,value:(last-first)/Math.abs(first)*100,unit:"%",method:`(آخر فترة − أول فترة) ÷ |أول فترة| × 100`});
+        }
+      }
+      return kpis.slice(0,5);
+    }
+    function calculateQuality(rows,profiles,dup,inc,outliers){
+      const cells=Math.max(1,rows.length*profiles.length);
+      const missing=profiles.reduce((s,p)=>s+p.missing,0);
+      const invalid=profiles.reduce((s,p)=>s+p.invalid,0);
+      const numericCount=profiles.filter(p=>["رقم","عملة","نسبة مئوية"].includes(p.type)).reduce((s,p)=>s+p.count,0);
+      const outlierCount=outliers.reduce((s,o)=>s+o.count,0);
+      const completeness=1-missing/cells;
+      const uniqueness=1-(rows.length?dup.count/rows.length:0);
+      const validity=1-invalid/cells;
+      const consistency=1-Math.min(1,inc.total/Math.max(1,rows.length));
+      const outlierHealth=1-Math.min(1,(numericCount?outlierCount/numericCount:0)*2);
+      const score=Math.max(0,Math.min(100,Math.round(35*completeness+25*uniqueness+25*validity+10*consistency+5*outlierHealth)));
+      const label=score>=90?"ممتازة":score>=75?"جيدة":score>=55?"تحتاج مراجعة":"ضعيفة";
+      return {
+        score,label,missing,missingRatio:missing/cells*100,duplicates:dup.count,
+        duplicateRatio:rows.length?dup.count/rows.length*100:0,invalid,
+        invalidRatio:invalid/cells*100,outlierCount,
+        outlierRatio:numericCount?outlierCount/numericCount*100:0,
+        inconsistent:inc.total,inconsistentRatio:rows.length?inc.total/rows.length*100:0,
+        numericErrors:profiles.filter(p=>["رقم","عملة","نسبة مئوية"].includes(p.type)).reduce((s,p)=>s+p.invalid,0),
+        dateErrors:profiles.filter(p=>p.type==="تاريخ").reduce((s,p)=>s+p.invalid,0)
+      };
+    }
+    function aggregateCategory(rows,category,metric){
+      const map=new Map(), additive=metric?isAdditive(metric):false;
+      rows.forEach(r=>{
+        const key=isMissing(r[category])?"(فارغ)":valueString(r[category]);
+        if(!map.has(key))map.set(key,{sum:0,count:0});
+        const item=map.get(key);
+        if(metric){const n=parseNumber(r[metric]);if(n!==null){item.sum+=n;item.count++}}
+        else item.count++;
+      });
+      const items=[...map.entries()].map(([label,x])=>({label,value:metric?(additive?x.sum:(x.count?x.sum/x.count:0)):x.count,count:x.count}));
+      items.sort((a,b)=>b.value-a.value);
+      return {items,method:metric?(additive?"المجموع":"المتوسط"):"العدد"};
+    }
+    function aggregateTime(rows,dateCol,metric){
+      const valid=rows.map(r=>({d:parseDate(r[dateCol]),n:metric?parseNumber(r[metric]):1})).filter(x=>x.d&&x.n!==null);
+      if(!valid.length)return {points:[],grain:""};
+      const min=Math.min(...valid.map(x=>x.d)),max=Math.max(...valid.map(x=>x.d)),days=(max-min)/86400000;
+      const grain=days>900?"سنة":days>75?"شهر":"يوم",map=new Map(),additive=metric?isAdditive(metric):true;
+      valid.forEach(({d,n})=>{
+        const key=grain==="سنة"?`${d.getFullYear()}`:grain==="شهر"?`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+        if(!map.has(key))map.set(key,{sum:0,count:0});
+        const x=map.get(key);x.sum+=n;x.count++;
+      });
+      return {grain,points:[...map.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([label,x])=>({label,value:additive?x.sum:x.sum/x.count,count:x.count}))};
+    }
+    function categoryCounts(rows,col){
+      const map=new Map();
+      rows.forEach(r=>{const k=isMissing(r[col])?"(فارغ)":valueString(r[col]);map.set(k,(map.get(k)||0)+1)});
+      return [...map.entries()].map(([label,count])=>({label,count,ratio:rows.length?count/rows.length*100:0})).sort((a,b)=>b.count-a.count);
+    }
+    function buildInsights(rows,profiles,stats,outliers,quality,corr){
+      const insights=[];
+      if(!rows.length) return ["لا توجد صفوف مطابقة للفلاتر الحالية."];
+      insights.push(`درجة جودة البيانات الحالية ${quality.score}/100 وتصنيفها «${quality.label}».`);
+      if(quality.missing) insights.push(`توجد ${formatNumber(quality.missing,0)} قيمة فارغة تمثل ${formatNumber(quality.missingRatio)}% من الخلايا.`);
+      if(quality.duplicates) insights.push(`تم اكتشاف ${formatNumber(quality.duplicates,0)} صف مكرر (${formatNumber(quality.duplicateRatio)}% من الصفوف).`);
+      const cat=primaryCategory(profiles);
+      if(cat){
+        const counts=categoryCounts(rows,cat.name);
+        if(counts.length) insights.push(`الفئة الأكثر تكرارًا في «${cat.name}» هي «${counts[0].label}» بعدد ${formatNumber(counts[0].count,0)} (${formatNumber(counts[0].ratio)}%).`);
+      }
+      const date=primaryDate(profiles),num=numericProfiles(profiles).find(p=>stats[p.name]);
+      if(date&&num){
+        const trend=aggregateTime(rows,date.name,num.name);
+        if(trend.points.length>=2){
+          const f=trend.points[0],l=trend.points.at(-1),change=f.value?((l.value-f.value)/Math.abs(f.value))*100:null;
+          insights.push(change===null
+            ? `انتقل ${num.name} من ${formatNumber(f.value)} في ${f.label} إلى ${formatNumber(l.value)} في ${l.label}.`
+            : `${num.name} ${change>=0?"ارتفع":"انخفض"} بنسبة ${formatNumber(Math.abs(change))}% بين ${f.label} و${l.label}.`);
+        }
+      }
+      if(corr.pairs.length){
+        const c=corr.pairs[0];
+        insights.push(`أقوى ارتباط رقمي ظاهر هو بين «${c.a}» و«${c.b}» بمعامل ${formatNumber(c.value,3)}. هذا ارتباط إحصائي ولا يثبت السببية.`);
+      }
+      if(outliers.length) insights.push(`رُصدت قيم شاذة بطريقة IQR في ${formatNumber(outliers.length,0)} عمود، بإجمالي ${formatNumber(outliers.reduce((s,o)=>s+o.count,0),0)} قيمة.`);
+      return insights.slice(0,7);
+    }
+    function fullAnalysis(rows,headers){
+      const profiles=profileColumns(rows,headers);
+      const dup=duplicateInfo(rows,headers);
+      const inc=inconsistencyInfo(rows,profiles);
+      const {stats,outliers}=calculateNumericStats(rows,profiles);
+      const corr=correlations(rows,profiles);
+      const quality=calculateQuality(rows,profiles,dup,inc,outliers);
+      const domain=inferDomain(headers,rows);
+      const kpis=buildKpis(rows,profiles,stats);
+      const insights=buildInsights(rows,profiles,stats,outliers,quality,corr);
+      return {rowCount:rows.length,columnCount:headers.length,profiles,dup,inc,stats,outliers,corr,quality,domain,kpis,insights};
+    }
+
+    async function initializeDataset(sheets,meta={}){
+      const totalRows=sheets.reduce((s,x)=>s+x.rows.length,0);
+      const maxCols=Math.max(0,...sheets.map(x=>x.headers.length));
+      if(!sheets.length) throw new Error("لم يتم العثور على جدول قابل للقراءة داخل الملف.");
+      if(totalRows>MAX_ROWS) throw new Error(`يحتوي الملف على ${formatNumber(totalRows,0)} صفًا، وهو أكبر من حد المعالجة الآمنة الحالي (${formatNumber(MAX_ROWS,0)}). قسّم الملف لتجنب انهيار المتصفح.`);
+      if(maxCols>MAX_COLUMNS) throw new Error(`يحتوي الملف على ${maxCols} عمودًا، وهو أكبر من حد المعالجة الآمنة الحالي (${MAX_COLUMNS}).`);
+      state.fileName=meta.name||"DATAWISE_PROJECT";
+      state.fileSize=meta.size||0;
+      state.fileType=meta.type||"project";
+      state.sheets=sheets;
+      state.sheetIndex=Math.min(meta.sheetIndex||0,sheets.length-1);
+      state.search="";state.sort={column:null,direction:"asc"};state.page=1;
+      state.hiddenColumns=new Set(meta.hiddenColumns||[]);
+      state.frozen=!!meta.frozen;
+      state.chartMetric=meta.chartMetric||null;
+      state.chartDimension=meta.chartDimension||null;
+      state.domainManual=meta.domainManual||"تلقائي";
+      state.filters={};state.rejectedSuggestions=new Set();
+      setPipeline(1,`تم اكتشاف ${sheets.length} جدول/ورقة`,`${formatNumber(totalRows,0)} صفًا في الملف`);
+      await sleep(70);
+
+      const rows=currentRows(),headers=currentHeaders();
+      setPipeline(2,"تحليل أسماء الأعمدة والقيم...",`${headers.length} عمودًا`);
+      const profiles=profileColumns(rows,headers); await sleep(60);
+      setPipeline(3,"تحديد الأرقام والتواريخ والفئات والمعرّفات...",`${profiles.length} نوعًا تم فحصها`);
+      await sleep(60);
+      setPipeline(4,"فحص صلاحية القيم واتساق الفئات...");
+      const inc=inconsistencyInfo(rows,profiles); await sleep(60);
+      setPipeline(5,"حساب القيم الناقصة ونسبها...",`${profiles.reduce((s,p)=>s+p.missing,0)} قيمة ناقصة`);
+      await sleep(60);
+      setPipeline(6,"مقارنة الصفوف لاكتشاف التكرارات...");
+      const dup=duplicateInfo(rows,headers); await sleep(60);
+      setPipeline(7,"اكتشاف القيم الشاذة باستخدام IQR...");
+      const numeric=calculateNumericStats(rows,profiles); await sleep(60);
+      setPipeline(8,"حساب الارتباطات بين الأعمدة الرقمية...");
+      const corr=correlations(rows,profiles); await sleep(60);
+      const quality=calculateQuality(rows,profiles,dup,inc,numeric.outliers);
+      const domain=inferDomain(headers,rows);
+      setPipeline(9,"إنشاء مؤشرات مناسبة للبيانات...");
+      const kpis=buildKpis(rows,profiles,numeric.stats); await sleep(60);
+      setPipeline(10,"اختيار الرسوم وفق الأنواع المكتشفة...");
+      const insights=buildInsights(rows,profiles,numeric.stats,numeric.outliers,quality,corr); await sleep(60);
+      state.baseAnalysis={rowCount:rows.length,columnCount:headers.length,profiles,dup,inc,stats:numeric.stats,outliers:numeric.outliers,corr,quality,domain,kpis,insights};
+      state.analysis=state.baseAnalysis;
+      setPipeline(11,"بناء Dashboard ديناميكي...");
+      await sleep(80);
+
+      prepareWorkspace();
+      hideLoading();
+      toast("اكتمل تحليل البيانات بنجاح.","success");
+    }
+
+    async function handleFile(file){
+      if(!file)return;
+      showLoading();
+      try{
+        setPipeline(0,"قراءة الملف محليًا...",`${file.name} · ${formatBytes(file.size)}`);
+        const sheets=await parseFile(file);
+        await initializeDataset(sheets,{name:file.name,size:file.size,type:file.type});
+      }catch(e){
+        $("#loadingOverlay").classList.add("hidden");
+        toast(e.message||"تعذر قراءة الملف.","error");
+        console.error(e);
+      }
+    }
+
+    function makeSample(){
+      const rows=[],products=["منصة احترافية","خدمة تحليل","حزمة تقارير","استشارة"],regions=["الرياض","جدة","الدمام","دبي"],channels=["المتجر","الشركاء","المبيعات المباشرة"];
+      for(let i=0;i<72;i++){
+        const month=i%18,product=products[i%4],qty=2+(i*7)%13,price=110+(i%4)*45;
+        rows.push({
+          "تاريخ الطلب":new Date(2024,month,3+(i*5)%24).toISOString().slice(0,10),
+          "المنطقة":regions[i%4],
+          "المنتج":product,
+          "قناة البيع":channels[i%3],
+          "الكمية":qty,
+          "المبيعات":i===41?price*qty*8:price*qty+(i%5)*30,
+          "التكلفة":Math.round((price*qty+(i%5)*30)*(.53+(i%4)*.04)),
+          "رضا العميل":i===17?null:3+(i%3),
+          "رقم الطلب":`ORD-${String(1001+i).padStart(5,"0")}`
+        });
+      }
+      rows.push({...rows[12]});
+      return [objectRowsToSheet(rows,"مبيعات نموذجية")];
+    }
+
+    function getFilteredRows(){
+      const rows=currentRows(),profiles=state.baseAnalysis?.profiles||[];
+      return rows.filter(row=>{
+        for(const def of state.filterDefs){
+          const val=state.filters[def.key];
+          if(!val)continue;
+          if(def.kind==="category" && val.value && valueString(row[def.column])!==val.value) return false;
+          if(def.kind==="number"){
+            const n=parseNumber(row[def.column]);
+            if(val.min!=="" && (n===null||n<Number(val.min)))return false;
+            if(val.max!=="" && (n===null||n>Number(val.max)))return false;
+          }
+          if(def.kind==="date"){
+            const d=parseDate(row[def.column]);
+            if(val.min && (!d||d<new Date(val.min)))return false;
+            if(val.max && (!d||d>new Date(val.max+"T23:59:59")))return false;
+          }
+        }
+        if(state.search){
+          const q=normalizeText(state.search);
+          if(!currentHeaders().some(h=>normalizeText(valueString(row[h])).includes(q)))return false;
+        }
+        return true;
+      });
+    }
+    function rebuildFilteredAnalysis(){
+      const rows=getFilteredRows();
+      state.analysis=rows.length===currentRows().length && !state.search && !Object.values(state.filters).some(v=>v&&(v.value||v.min||v.max))
+        ? state.baseAnalysis:fullAnalysis(rows,currentHeaders());
+      $("#filteredStatus").textContent=rows.length===currentRows().length
+        ? `${formatNumber(rows.length,0)} صف`
+        : `${formatNumber(rows.length,0)} من ${formatNumber(currentRows().length,0)} صف`;
+    }
+    function setupFilters(){
+      const p=state.baseAnalysis.profiles,defs=[];
+      const date=p.find(x=>x.type==="تاريخ");
+      if(date)defs.push({key:`date:${date.name}`,column:date.name,kind:"date"});
+      p.filter(x=>x.type==="فئة"&&x.unique>1&&x.unique<=100).slice(0,3).forEach(x=>defs.push({key:`cat:${x.name}`,column:x.name,kind:"category"}));
+      p.filter(x=>["رقم","عملة","نسبة مئوية"].includes(x.type)).slice(0,2).forEach(x=>defs.push({key:`num:${x.name}`,column:x.name,kind:"number"}));
+      state.filterDefs=defs;
+      const old=state.filters;state.filters={};
+      defs.forEach(d=>state.filters[d.key]=old[d.key]||{value:"",min:"",max:""});
+    }
+    function renderFilterPanel(){
+      if(!state.filterDefs.length)return "";
+      const boxes=state.filterDefs.map(def=>{
+        const val=state.filters[def.key]||{};
+        if(def.kind==="category"){
+          const items=categoryCounts(currentRows(),def.column).slice(0,100);
+          return `<div class="filter-box"><label>${escapeHTML(def.column)}</label><select class="auto-filter" data-key="${escapeHTML(def.key)}" data-kind="category"><option value="">كل القيم</option>${items.map(x=>`<option value="${escapeHTML(x.label)}" ${val.value===x.label?"selected":""}>${escapeHTML(x.label)} (${x.count})</option>`).join("")}</select></div>`;
+        }
+        if(def.kind==="number"){
+          const s=state.baseAnalysis.stats[def.column]||{};
+          return `<div class="filter-box"><label>${escapeHTML(def.column)} · من / إلى</label><div class="range-pair"><input class="auto-filter" data-key="${escapeHTML(def.key)}" data-part="min" type="number" placeholder="${escapeHTML(formatNumber(s.min))}" value="${escapeHTML(val.min||"")}"><input class="auto-filter" data-key="${escapeHTML(def.key)}" data-part="max" type="number" placeholder="${escapeHTML(formatNumber(s.max))}" value="${escapeHTML(val.max||"")}"></div></div>`;
+        }
+        const dates=currentRows().map(r=>parseDate(r[def.column])).filter(Boolean).sort((a,b)=>a-b);
+        return `<div class="filter-box"><label>${escapeHTML(def.column)} · الفترة</label><div class="range-pair"><input class="auto-filter" data-key="${escapeHTML(def.key)}" data-part="min" type="date" min="${dates[0]?.toISOString().slice(0,10)||""}" max="${dates.at(-1)?.toISOString().slice(0,10)||""}" value="${escapeHTML(val.min||"")}"><input class="auto-filter" data-key="${escapeHTML(def.key)}" data-part="max" type="date" min="${dates[0]?.toISOString().slice(0,10)||""}" max="${dates.at(-1)?.toISOString().slice(0,10)||""}" value="${escapeHTML(val.max||"")}"></div></div>`;
+      }).join("");
+      return `<div class="filter-panel"><div class="filter-head"><h3>فلاتر مولّدة تلقائيًا من الأعمدة</h3><button class="btn btn-sm btn-secondary" id="resetFilters">إعادة ضبط</button></div><div class="filters">${boxes}</div></div>`;
+    }
+
+    function prepareWorkspace(){
+      $("#landingPage").classList.add("hidden");
+      $("#appShell").classList.remove("hidden");
+      $("#headerFileName").textContent=state.fileName;
+      $("#headerFileMeta").textContent=`${formatBytes(state.fileSize)} · ${state.sheets.length} جدول/ورقة`;
+      $("#sheetSelector").innerHTML=state.sheets.map((s,i)=>`<option value="${i}" ${i===state.sheetIndex?"selected":""}>${escapeHTML(s.name)} · ${formatNumber(s.rows.length,0)} صف</option>`).join("");
+      $("#domainSelector").innerHTML=domains.map(d=>`<option value="${escapeHTML(d)}" ${d===state.domainManual?"selected":""}>${escapeHTML(d)}</option>`).join("");
+      updateDomainLabel();
+      setupFilters();
+      chooseChartColumns();
+      rebuildFilteredAnalysis();
+      renderAllCore();
+      switchSection("dashboard");
+    }
+    function chooseChartColumns(){
+      const p=state.baseAnalysis.profiles;
+      const nums=numericProfiles(p);
+      if(!state.chartMetric || !currentHeaders().includes(state.chartMetric)) state.chartMetric=nums[0]?.name||null;
+      if(!state.chartDimension || !currentHeaders().includes(state.chartDimension)) state.chartDimension=primaryCategory(p)?.name||null;
+    }
+    function updateDomainLabel(){
+      const detected=state.baseAnalysis.domain;
+      const value=state.domainManual==="تلقائي"?detected.name:state.domainManual;
+      $("#domainConfidence").textContent=state.domainManual==="تلقائي"
+        ? `يبدو أن البيانات تنتمي إلى: ${value} · ثقة ${detected.confidence}%`
+        : `تم اختيار المجال يدويًا: ${value}`;
+    }
+    function renderAllCore(){
+      renderOverview();
+      renderQuality();
+      renderCleaning();
+      renderTable();
+      renderAsk();
+      renderExport();
+      if(state.activeSection==="dashboard")renderDashboard();
+      if(state.activeSection==="analysis")renderAnalysis();
+    }
+    function refreshAfterFilter(){
+      rebuildFilteredAnalysis();state.page=1;
+      renderOverview();renderQuality();renderTable();
+      if(state.activeSection==="dashboard")renderDashboard();
+      if(state.activeSection==="analysis")renderAnalysis();
+    }
+
+    function pageHeading(title,desc,actions=""){
+      return `<div class="page-heading"><div><h2>${title}</h2><p>${desc}</p></div>${actions?`<div class="inline-actions">${actions}</div>`:""}</div>`;
+    }
+    function kpiHTML(kpis){
+      const colors=["#4f46e5","#06b6d4","#10b981","#f59e0b","#8b5cf6"];
+      return `<div class="kpi-grid">${kpis.map((k,i)=>`<article class="kpi-card" style="--kpi-color:${colors[i%colors.length]}"><div class="kpi-label">${escapeHTML(k.name)}</div><div class="kpi-value">${formatCompact(k.value)} <span class="kpi-unit">${escapeHTML(k.unit||"")}</span></div><div class="kpi-method">${escapeHTML(k.method)}</div></article>`).join("")}</div>`;
+    }
+    function chartEmpty(text){return `<div class="empty"><div class="empty-icon">⌁</div>${escapeHTML(text)}</div>`}
+    function renderDashboard(){
+      const a=state.analysis,rows=getFilteredRows(),p=a.profiles;
+      if(!rows.length){
+        $("#section-dashboard").innerHTML=pageHeading("Dashboard ديناميكي","يتغير وفق الملف والفلاتر الحالية")+renderFilterPanel()+chartEmpty("لا توجد صفوف مطابقة للفلاتر.");
+        return;
+      }
+      const nums=numericProfiles(p),cats=p.filter(x=>(x.type==="فئة"||x.type==="نص")&&x.unique>1&&x.unique<=100),dates=p.filter(x=>x.type==="تاريخ");
+      if(!state.chartMetric || !p.some(x=>x.name===state.chartMetric))state.chartMetric=nums[0]?.name||null;
+      if(!state.chartDimension || !p.some(x=>x.name===state.chartDimension))state.chartDimension=cats[0]?.name||null;
+      const metricOptions=`<option value="">عدد السجلات</option>${nums.map(x=>`<option value="${escapeHTML(x.name)}" ${x.name===state.chartMetric?"selected":""}>${escapeHTML(x.name)}</option>`).join("")}`;
+      const dimensionOptions=`<option value="">بدون بُعد</option>${cats.map(x=>`<option value="${escapeHTML(x.name)}" ${x.name===state.chartDimension?"selected":""}>${escapeHTML(x.name)}</option>`).join("")}`;
+      const insights=a.insights.map((x,i)=>`<div class="insight"><span class="insight-dot" style="background:${COLORS[i%COLORS.length]}"></span><span>${escapeHTML(x)}</span></div>`).join("");
+      const chartCards=[];
+      if(state.chartDimension) chartCards.push(`<article class="card chart-card"><div class="card-head"><div><h3>مقارنة ${escapeHTML(state.chartDimension)}</h3><p>${state.chartMetric?`بحسب ${escapeHTML(state.chartMetric)}`:"بحسب عدد السجلات"}</p></div><span class="badge">Column</span></div><div class="chart-wrap"><canvas id="dashCategory"></canvas></div></article>`);
+      if(dates.length) chartCards.push(`<article class="card chart-card"><div class="card-head"><div><h3>الاتجاه الزمني</h3><p>${escapeHTML(dates[0].name)}${state.chartMetric?` · ${escapeHTML(state.chartMetric)}`:""}</p></div><span class="badge">Line / Area</span></div><div class="chart-wrap"><canvas id="dashTrend"></canvas></div></article>`);
+      if(state.chartMetric) chartCards.push(`<article class="card chart-card"><div class="card-head"><div><h3>توزيع ${escapeHTML(state.chartMetric)}</h3><p>Histogram محسوب من القيم الرقمية</p></div><span class="badge">Histogram</span></div><div class="chart-wrap"><canvas id="dashHistogram"></canvas></div></article>`);
+      if(nums.length>=2) chartCards.push(`<article class="card chart-card"><div class="card-head"><div><h3>العلاقة بين ${escapeHTML(nums[0].name)} و${escapeHTML(nums[1].name)}</h3><p>ارتباط بصري، وليس إثباتًا للسببية</p></div><span class="badge">Scatter</span></div><div class="chart-wrap"><canvas id="dashScatter"></canvas></div></article>`);
+      const quality=a.quality;
+      const original=originalRows().slice(0,5);
+      $("#section-dashboard").innerHTML=
+        pageHeading("Dashboard ديناميكي",`مبني تلقائيًا من «${escapeHTML(currentSheet().name)}» دون مؤشرات ثابتة`,
+          `<label class="field-inline">المقياس <select id="metricSelector">${metricOptions}</select></label><label class="field-inline">البُعد <select id="dimensionSelector">${dimensionOptions}</select></label>`)
+        +renderFilterPanel()
+        +kpiHTML(a.kpis)
+        +`<article class="card"><div class="card-head"><div><h3>أهم الاستنتاجات</h3><p>جميعها محسوبة من الصفوف المطابقة حاليًا</p></div><span class="badge green">${formatNumber(rows.length,0)} صف</span></div><div class="insight-list">${insights}</div></article>`
+        +(chartCards.length?`<div class="grid-2 section-gap">${chartCards.join("")}</div>`:"")
+        +(a.corr.columns.length>=2?`<article class="card section-gap"><div class="card-head"><div><h3>مصفوفة الارتباط</h3><p>معامل Pearson بين الأعمدة الرقمية المتاحة</p></div><span class="badge">Heatmap</span></div>${correlationMatrixHTML(a.corr)}</article>`:"")
+        +`<div class="grid-2 section-gap">
+          <article class="card card-pad"><h3 style="margin-top:0">جودة البيانات الحالية</h3>
+            <div style="display:flex;align-items:end;gap:10px;margin:12px 0"><strong style="font-size:2rem;direction:ltr">${quality.score}/100</strong><span class="badge ${quality.score>=90?"green":quality.score>=55?"yellow":"red"}">${quality.label}</span></div>
+            <div class="progress"><span style="width:${quality.score}%;background:${quality.score>=90?"#10b981":quality.score>=55?"#f59e0b":"#ef4444"}"></span></div>
+            <p class="muted small">ناقص: ${formatNumber(quality.missing,0)} · مكرر: ${formatNumber(quality.duplicates,0)} · غير صالح: ${formatNumber(quality.invalid,0)} · شاذ: ${formatNumber(quality.outlierCount,0)}</p>
+          </article>
+          <article class="card card-pad"><h3 style="margin-top:0">فهم البيانات</h3><p>يبدو أن البيانات تنتمي إلى <strong>${escapeHTML(state.domainManual==="تلقائي"?a.domain.name:state.domainManual)}</strong>.</p><p class="muted small">تم الاستدلال من أسماء الأعمدة والقيم المتاحة. يمكنك تغيير المجال يدويًا من الشريط العلوي.</p></article>
+        </div>`
+        +`<article class="card table-card section-gap"><div class="card-head" style="padding-bottom:14px"><div><h3>معاينة البيانات الأصلية</h3><p>الأصل محفوظ ولا يتأثر بعمليات التنظيف</p></div><span class="badge">${formatNumber(originalRows().length,0)} صف أصلي</span></div>${simpleTable(original,currentHeaders(),5)}</article>`;
+      bindDashboardControls();
+      renderDashboardCharts(rows,a);
+    }
+    function bindDashboardControls(){
+      $("#metricSelector")?.addEventListener("change",e=>{state.chartMetric=e.target.value||null;renderDashboard()});
+      $("#dimensionSelector")?.addEventListener("change",e=>{state.chartDimension=e.target.value||null;renderDashboard()});
+      bindFilters();
+    }
+    function bindFilters(){
+      $$(".auto-filter").forEach(el=>el.addEventListener("change",e=>{
+        const key=e.target.dataset.key,part=e.target.dataset.part;
+        if(e.target.dataset.kind==="category")state.filters[key].value=e.target.value;
+        else state.filters[key][part]=e.target.value;
+        refreshAfterFilter();
+      }));
+      $("#resetFilters")?.addEventListener("click",()=>{
+        Object.values(state.filters).forEach(v=>{v.value="";v.min="";v.max=""});
+        state.search="";refreshAfterFilter();
+      });
+    }
+    function destroyChart(id){
+      if(state.charts[id]){state.charts[id].destroy();delete state.charts[id]}
+    }
+    function chartOptions(xTitle,yTitle,legend=false){
+      return {
+        responsive:true,maintainAspectRatio:true,aspectRatio:1.75,
+        interaction:{mode:"nearest",intersect:false},
+        plugins:{legend:{display:legend,position:"bottom",labels:{usePointStyle:true,boxWidth:8}},tooltip:{rtl:true}},
+        scales:{
+          x:{title:{display:!!xTitle,text:xTitle},grid:{display:false},ticks:{maxRotation:35,minRotation:0}},
+          y:{beginAtZero:false,title:{display:!!yTitle,text:yTitle},grid:{color:"rgba(148,163,184,.13)"}}
+        }
+      };
+    }
+    function renderDashboardCharts(rows,a){
+      if(typeof Chart==="undefined")return;
+      Chart.defaults.font.family='"Segoe UI",Tahoma,Arial,sans-serif';
+      Chart.defaults.color=getComputedStyle(document.body).getPropertyValue("--muted").trim();
+      ["dashCategory","dashTrend","dashHistogram","dashScatter"].forEach(destroyChart);
+      const profiles=a.profiles,metric=state.chartMetric,metricProfile=profiles.find(p=>p.name===metric),unit=metricProfile?.unit||"";
+      if($("#dashCategory")&&state.chartDimension){
+        const agg=aggregateCategory(rows,state.chartDimension,metric),items=agg.items.slice(0,12);
+        state.charts.dashCategory=new Chart($("#dashCategory"),{
+          type:"bar",data:{labels:items.map(x=>x.label),datasets:[{label:metric?`${agg.method} ${metric}`:"عدد السجلات",data:items.map(x=>x.value),backgroundColor:COLORS.map(c=>c+"d9"),borderRadius:7}]},
+          options:chartOptions(state.chartDimension,`${agg.method}${unit?` (${unit})`:""}`,false)
+        });
+      }
+      const date=primaryDate(profiles);
+      if($("#dashTrend")&&date){
+        const trend=aggregateTime(rows,date.name,metric);
+        state.charts.dashTrend=new Chart($("#dashTrend"),{
+          type:"line",data:{labels:trend.points.map(x=>x.label),datasets:[{label:metric||"عدد السجلات",data:trend.points.map(x=>x.value),borderColor:"#4f46e5",backgroundColor:"rgba(79,70,229,.13)",fill:true,tension:.3,pointRadius:3}]},
+          options:chartOptions(`${date.name} (${trend.grain})`,`${metric||"العدد"}${unit?` (${unit})`:""}`,false)
+        });
+      }
+      if($("#dashHistogram")&&metric){
+        const nums=rows.map(r=>parseNumber(r[metric])).filter(x=>x!==null);
+        const hist=histogram(nums);
+        state.charts.dashHistogram=new Chart($("#dashHistogram"),{
+          type:"bar",data:{labels:hist.labels,datasets:[{label:"التكرار",data:hist.counts,backgroundColor:"rgba(6,182,212,.78)",borderRadius:5,barPercentage:1,categoryPercentage:.96}]},
+          options:chartOptions(`${metric}${unit?` (${unit})`:""}`,"التكرار",false)
+        });
+      }
+      const nums=numericProfiles(profiles);
+      if($("#dashScatter")&&nums.length>=2){
+        const data=rows.map(r=>({x:parseNumber(r[nums[0].name]),y:parseNumber(r[nums[1].name])})).filter(x=>x.x!==null&&x.y!==null);
+        const sample=data.length>800?data.filter((_,i)=>i%Math.ceil(data.length/800)===0):data;
+        state.charts.dashScatter=new Chart($("#dashScatter"),{
+          type:"scatter",data:{datasets:[{label:`${nums[0].name} ↔ ${nums[1].name}`,data:sample,backgroundColor:"rgba(139,92,246,.62)",pointRadius:4}]},
+          options:chartOptions(`${nums[0].name}${nums[0].unit?` (${nums[0].unit})`:""}`,`${nums[1].name}${nums[1].unit?` (${nums[1].unit})`:""}`,true)
+        });
+      }
+    }
+    function histogram(nums){
+      if(!nums.length)return {labels:[],counts:[]};
+      const min=Math.min(...nums),max=Math.max(...nums);
+      if(min===max)return {labels:[formatNumber(min)],counts:[nums.length]};
+      const bins=Math.min(15,Math.max(5,Math.ceil(Math.sqrt(nums.length)))),step=(max-min)/bins;
+      const counts=Array(bins).fill(0);
+      nums.forEach(n=>counts[Math.min(bins-1,Math.floor((n-min)/step))]++);
+      return {labels:counts.map((_,i)=>`${formatNumber(min+i*step)}–${formatNumber(min+(i+1)*step)}`),counts};
+    }
+
+    function renderOverview(){
+      const a=state.baseAnalysis;
+      const cards=[
+        ["عدد الصفوف",a.rowCount,"صف"],
+        ["عدد الأعمدة",a.columnCount,"عمود"],
+        ["حجم الملف",formatBytes(state.fileSize),""],
+        ["الجداول / الأوراق",state.sheets.length,"ورقة"]
+      ];
+      const rows=a.profiles.map(p=>`<tr><td><strong>${escapeHTML(p.name)}</strong></td><td><span class="badge">${escapeHTML(p.type)}</span></td><td>${formatNumber(p.count,0)}</td><td>${formatNumber(p.missing,0)} <span class="muted">(${formatNumber(percent(p.missing,p.total))}%)</span></td><td>${formatNumber(p.unique,0)}</td><td title="${escapeHTML(valueString(p.sample))}">${escapeHTML(valueString(p.sample).slice(0,70)||"—")}</td></tr>`).join("");
+      $("#section-overview").innerHTML=
+        pageHeading("DATA OVERVIEW","وصف فعلي لبنية الملف والجدول المحدد")
+        +`<div class="stats-grid">${cards.map(x=>`<div class="stat-box"><span>${x[0]}</span><strong>${typeof x[1]==="number"?formatNumber(x[1],0):x[1]} <small class="muted">${x[2]}</small></strong></div>`).join("")}</div>`
+        +`<article class="card table-card section-gap"><div class="card-head" style="padding-bottom:14px"><div><h3>تحليل الأعمدة</h3><p>النوع مستنتج من القيم غير الفارغة ونسبة صلاحيتها</p></div></div><div class="table-wrap"><table><thead><tr><th>اسم العمود</th><th>النوع</th><th>عدد القيم</th><th>الفارغ</th><th>الفريد</th><th>مثال</th></tr></thead><tbody>${rows}</tbody></table></div></article>`;
+    }
+    function qualityColor(score){return score>=90?"#10b981":score>=75?"#22c55e":score>=55?"#f59e0b":"#ef4444"}
+    function renderQuality(){
+      const q=state.baseAnalysis.quality,a=state.baseAnalysis,circ=2*Math.PI*74,offset=circ*(1-q.score/100);
+      const items=[
+        ["القيم الفارغة",q.missing,q.missingRatio],
+        ["الصفوف المكررة",q.duplicates,q.duplicateRatio],
+        ["الأخطاء الرقمية والتاريخية",q.invalid,q.invalidRatio],
+        ["القيم الشاذة",q.outlierCount,q.outlierRatio],
+        ["الفئات غير المتناسقة",q.inconsistent,q.inconsistentRatio]
+      ];
+      $("#section-quality").innerHTML=
+        pageHeading("DATA QUALITY","النتيجة محسوبة من الاكتمال والتفرد والصلاحية والاتساق والقيم الشاذة")
+        +`<div class="quality-layout">
+          <article class="card gauge-card">
+            <div class="gauge"><svg viewBox="0 0 180 180"><circle class="gauge-bg" cx="90" cy="90" r="74"></circle><circle class="gauge-value" cx="90" cy="90" r="74" stroke="${qualityColor(q.score)}" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"></circle></svg><div class="gauge-center"><div class="gauge-score">${q.score}</div><div class="muted small">من 100</div></div></div>
+            <h3 style="margin:5px 0"><span class="badge ${q.score>=90?"green":q.score>=55?"yellow":"red"}">${q.label}</span></h3>
+            <p class="muted small">لا تُستخدم قيم ثابتة في حساب النتيجة.</p>
+          </article>
+          <article class="card card-pad">
+            <div class="quality-items">${items.map((x,i)=>`<div class="quality-item"><div class="qtop"><span>${x[0]}</span><strong>${formatNumber(x[1],0)}</strong></div><div class="progress"><span style="width:${Math.min(100,x[2])}%;background:${COLORS[(i+2)%COLORS.length]}"></span></div><div class="muted small" style="margin-top:5px">${formatNumber(x[2])}%</div></div>`).join("")}</div>
+          </article>
+        </div>`
+        +`<div class="grid-2 section-gap">
+          <article class="card card-pad"><h3 style="margin-top:0">تفصيل الصلاحية</h3><p class="muted small">أخطاء رقمية: <strong>${formatNumber(q.numericErrors,0)}</strong></p><p class="muted small">أخطاء تاريخية: <strong>${formatNumber(q.dateErrors,0)}</strong></p><p class="muted small">إجمالي الخلايا: <strong>${formatNumber(a.rowCount*a.columnCount,0)}</strong></p></article>
+          <article class="card card-pad"><h3 style="margin-top:0">منهجية النتيجة</h3><p class="muted small">الاكتمال 35% · التفرد 25% · صلاحية الأنواع 25% · اتساق الفئات 10% · سلامة القيم الشاذة 5%.</p><p class="muted small">القيم الشاذة تُكتشف بحدود Q1 − 1.5×IQR وQ3 + 1.5×IQR.</p></article>
+        </div>`;
+    }
+
+    function buildCleaningSuggestions(){
+      const a=state.baseAnalysis,s=[];
+      if(a.dup.count)s.push({id:"duplicates",type:"تكرارات",title:"إزالة الصفوف المكررة",affected:a.dup.count,proposal:"الاحتفاظ بأول ظهور وحذف النسخ المطابقة تمامًا.",reason:"يمنع احتساب السجل نفسه أكثر من مرة.",action:"duplicates"});
+      for(const p of a.profiles.filter(x=>x.missing>0).slice(0,10)){
+        const st=a.stats[p.name];
+        const proposal=st?`ملء القيم الفارغة بالوسيط (${formatNumber(st.median)}).`:(p.type==="فئة"?`ملء القيم بأكثر فئة تكرارًا.`:`ملء القيم بعلامة «غير متاح».`);
+        s.push({id:`missing:${p.name}`,type:"قيم فارغة",title:`معالجة الفراغات في «${p.name}»`,affected:p.missing,proposal,reason:st?"الوسيط أقل تأثرًا بالقيم المتطرفة.":"يحافظ على الصفوف ويجعل الفراغات واضحة.",action:"missing",column:p.name});
+      }
+      for(const d of a.inc.details.slice(0,8))s.push({id:`inconsistent:${d.column}`,type:"اتساق",title:`توحيد النصوص في «${d.column}»`,affected:d.count,proposal:"إزالة المسافات الزائدة ودمج اختلافات حالة الأحرف.",reason:`اكتُشفت صيغ متقاربة مثل: ${d.examples.join("، ")}`,action:"inconsistent",column:d.column});
+      for(const p of a.profiles.filter(x=>["رقم","عملة","نسبة مئوية","تاريخ"].includes(x.type))){
+        const strings=currentRows().filter(r=>!isMissing(r[p.name])&&typeof r[p.name]==="string").length;
+        if(strings && !p.invalid)s.push({id:`convert:${p.name}`,type:"تحويل نوع",title:`تحويل «${p.name}» إلى ${p.type}`,affected:strings,proposal:p.type==="تاريخ"?"تحويل القيم القابلة للقراءة إلى ISO Date.":"تحويل النصوص الرقمية إلى قيم رقمية قابلة للحساب.",reason:"النوع الحالي نصي رغم أن محتوى العمود منتظم.",action:"convert",column:p.name});
+        if(p.invalid)s.push({id:`invalid:${p.name}`,type:"قيم غير صالحة",title:`عزل القيم غير الصالحة في «${p.name}»`,affected:p.invalid,proposal:"استبدال القيم التي لا يمكن تحويلها بقيمة فارغة للمراجعة.",reason:`العمود مستنتج كنوع ${p.type} لكن بعض القيم لا تطابقه.`,action:"invalid",column:p.name});
+      }
+      for(const o of a.outliers.slice(0,8))s.push({id:`outlier:${o.column}`,type:"قيم شاذة",title:`مراجعة القيم الشاذة في «${o.column}»`,affected:o.count,proposal:`تقييد القيم خارج [${formatNumber(o.low)}، ${formatNumber(o.high)}] إلى أقرب حد IQR.`,reason:"يقلل تأثير القيم المتطرفة مع عدم حذف الصفوف.",action:"outlier",column:o.column,low:o.low,high:o.high});
+      return s.slice(0,24);
+    }
+    function renderCleaning(){
+      const suggestions=buildCleaningSuggestions();
+      const visible=suggestions;
+      $("#section-cleaning").innerHTML=
+        pageHeading("DATA CLEANING","لا يتم تعديل البيانات تلقائيًا؛ اختر تطبيق أو رفض كل اقتراح",
+          `<span class="original-note">البيانات الأصلية محفوظة منفصلة</span>`)
+        +(state.appliedHistory.length?`<div class="original-note" style="margin-bottom:14px">تم تطبيق ${state.appliedHistory.length} إجراء على النسخة المنظفة. يمكنك دائمًا تصدير الأصل.</div>`:"")
+        +(visible.length?`<div class="cleaning-list">${visible.map(x=>{
+          const rejected=state.rejectedSuggestions.has(x.id);
+          return `<article class="clean-item"><div><div class="inline-actions"><span class="badge ${x.type==="قيم شاذة"?"yellow":x.type==="قيم غير صالحة"?"red":""}">${escapeHTML(x.type)}</span><h4>${escapeHTML(x.title)}</h4></div><p><strong>المقترح:</strong> ${escapeHTML(x.proposal)}</p><p><strong>السبب:</strong> ${escapeHTML(x.reason)}</p><div class="clean-meta"><span class="badge">${formatNumber(x.affected,0)} صف متأثر</span>${rejected?'<span class="badge red">مرفوض</span>':""}</div></div><div class="inline-actions"><button class="btn btn-success btn-sm clean-apply" data-id="${escapeHTML(x.id)}" ${rejected?"disabled":""}>تطبيق</button><button class="btn btn-secondary btn-sm clean-reject" data-id="${escapeHTML(x.id)}" ${rejected?"disabled":""}>رفض</button></div></article>`;
+        }).join("")}</div>`:`<div class="empty"><div class="empty-icon">✓</div>لم تُكتشف مشكلات تنظيف قابلة للاقتراح في النسخة الحالية.</div>`);
+      $$(".clean-apply").forEach(b=>b.addEventListener("click",()=>applyCleaning(b.dataset.id)));
+      $$(".clean-reject").forEach(b=>b.addEventListener("click",()=>{state.rejectedSuggestions.add(b.dataset.id);renderCleaning();toast("تم رفض الاقتراح دون تعديل البيانات.")}));
+    }
+    async function applyCleaning(id){
+      const s=buildCleaningSuggestions().find(x=>x.id===id);if(!s)return;
+      const rows=currentRows(),headers=currentHeaders();
+      if(s.action==="duplicates"){
+        const seen=new Set();
+        currentSheet().rows=rows.filter(r=>{const key=JSON.stringify(headers.map(h=>safeJSONValue(r[h])));if(seen.has(key))return false;seen.add(key);return true});
+      }
+      if(s.action==="missing"){
+        const p=state.baseAnalysis.profiles.find(x=>x.name===s.column),st=state.baseAnalysis.stats[s.column];
+        let fill;
+        if(st)fill=st.median;
+        else if(p.type==="فئة"){
+          fill=categoryCounts(rows,s.column).filter(x=>x.label!=="(فارغ)")[0]?.label??"غير متاح";
+        }else fill="غير متاح";
+        rows.forEach(r=>{if(isMissing(r[s.column]))r[s.column]=fill});
+      }
+      if(s.action==="inconsistent"){
+        const canonical=new Map();
+        rows.forEach(r=>{if(!isMissing(r[s.column])){const raw=valueString(r[s.column]).trim().replace(/\s+/g," "),key=normalizeText(raw);if(!canonical.has(key))canonical.set(key,raw);r[s.column]=canonical.get(key)}});
+      }
+      if(s.action==="convert"){
+        const p=state.baseAnalysis.profiles.find(x=>x.name===s.column);
+        rows.forEach(r=>{
+          if(isMissing(r[s.column]))return;
+          if(p.type==="تاريخ"){const d=parseDate(r[s.column]);if(d)r[s.column]=d.toISOString()}
+          else{const n=parseNumber(r[s.column]);if(n!==null)r[s.column]=n}
+        });
+      }
+      if(s.action==="invalid"){
+        const p=state.baseAnalysis.profiles.find(x=>x.name===s.column);
+        rows.forEach(r=>{
+          if(isMissing(r[s.column]))return;
+          const ok=p.type==="تاريخ"?parseDate(r[s.column])!==null:parseNumber(r[s.column])!==null;
+          if(!ok)r[s.column]=null;
+        });
+      }
+      if(s.action==="outlier"){
+        rows.forEach(r=>{const n=parseNumber(r[s.column]);if(n!==null){if(n<s.low)r[s.column]=s.low;if(n>s.high)r[s.column]=s.high}});
+      }
+      state.appliedHistory.push({id,title:s.title,time:new Date().toISOString()});
+      await reanalyzeCurrent();
+      toast("تم تطبيق الإجراء على النسخة المنظفة فقط.","success");
+    }
+    async function reanalyzeCurrent(){
+      state.baseAnalysis=fullAnalysis(currentRows(),currentHeaders());
+      setupFilters();chooseChartColumns();rebuildFilteredAnalysis();
+      updateDomainLabel();renderAllCore();
+    }
+
+    function correlationMatrixHTML(corr){
+      if(corr.columns.length<2)return chartEmpty("تحتاج مصفوفة الارتباط إلى عمودين رقميين على الأقل.");
+      return `<div class="matrix-wrap"><table class="matrix"><thead><tr><th></th>${corr.columns.map(c=>`<th title="${escapeHTML(c)}">${escapeHTML(c)}</th>`).join("")}</tr></thead><tbody>${corr.columns.map(r=>`<tr><th>${escapeHTML(r)}</th>${corr.columns.map(c=>{
+        const v=corr.matrix[r][c],alpha=v===null?0:Math.abs(v),color=v===null?"var(--surface-2)":v>=0?`rgba(79,70,229,${.1+alpha*.72})`:`rgba(239,68,68,${.1+alpha*.72})`;
+        return `<td style="background:${color};color:${alpha>.57?"#fff":"var(--text)"}">${v===null?"—":formatNumber(v,3)}</td>`;
+      }).join("")}</tr>`).join("")}</tbody></table><p class="muted small">القيم من −1 إلى +1. الارتباط لا يعني السببية.</p></div>`;
+    }
+    function boxPlotHTML(name,s){
+      if(!s)return "";
+      const min=s.min,max=s.max,span=max-min||1,pos=v=>60+((v-min)/span)*500;
+      return `<div class="boxplot"><svg viewBox="0 0 620 150" role="img" aria-label="Box Plot ${escapeHTML(name)}">
+        <line x1="${pos(min)}" y1="70" x2="${pos(max)}" y2="70" stroke="#94a3b8" stroke-width="3"/>
+        <line x1="${pos(min)}" y1="54" x2="${pos(min)}" y2="86" stroke="#64748b" stroke-width="3"/>
+        <line x1="${pos(max)}" y1="54" x2="${pos(max)}" y2="86" stroke="#64748b" stroke-width="3"/>
+        <rect x="${pos(s.q1)}" y="42" width="${Math.max(2,pos(s.q3)-pos(s.q1))}" height="56" rx="8" fill="rgba(79,70,229,.2)" stroke="#4f46e5" stroke-width="3"/>
+        <line x1="${pos(s.median)}" y1="42" x2="${pos(s.median)}" y2="98" stroke="#06b6d4" stroke-width="4"/>
+        <text x="${pos(min)}" y="122" text-anchor="middle" fill="currentColor" font-size="12">${escapeHTML(formatNumber(min))}</text>
+        <text x="${pos(s.q1)}" y="25" text-anchor="middle" fill="currentColor" font-size="12">Q1 ${escapeHTML(formatNumber(s.q1))}</text>
+        <text x="${pos(s.median)}" y="118" text-anchor="middle" fill="currentColor" font-size="12">Median ${escapeHTML(formatNumber(s.median))}</text>
+        <text x="${pos(s.q3)}" y="25" text-anchor="middle" fill="currentColor" font-size="12">Q3 ${escapeHTML(formatNumber(s.q3))}</text>
+        <text x="${pos(max)}" y="122" text-anchor="middle" fill="currentColor" font-size="12">${escapeHTML(formatNumber(max))}</text>
+      </svg></div>`;
+    }
+    function renderAnalysis(){
+      const a=state.analysis,rows=getFilteredRows(),nums=numericProfiles(a.profiles),cat=primaryCategory(a.profiles),date=primaryDate(a.profiles);
+      const numericRows=nums.map(p=>{const s=a.stats[p.name];return s?`<tr><td><strong>${escapeHTML(p.name)}</strong></td><td>${formatNumber(s.mean)}</td><td>${formatNumber(s.median)}</td><td>${formatNumber(s.mode)}</td><td>${formatNumber(s.min)}</td><td>${formatNumber(s.max)}</td><td>${formatNumber(s.range)}</td><td>${formatNumber(s.std)}</td><td>${formatNumber(s.variance)}</td><td>${formatNumber(s.q1)}</td><td>${formatNumber(s.q3)}</td><td>${formatNumber(s.p90)}</td></tr>`:""}).join("");
+      const catCounts=cat?categoryCounts(rows,cat.name):[];
+      const outRows=a.outliers.map(o=>`<tr><td>${escapeHTML(o.column)}</td><td>${formatNumber(o.count,0)}</td><td>${formatNumber(o.ratio)}%</td><td>${escapeHTML(o.values.map(formatNumber).join("، "))}</td><td>${formatNumber(o.low)} → ${formatNumber(o.high)}</td></tr>`).join("");
+      const trend=date?aggregateTime(rows,date.name,state.chartMetric):null;
+      $("#section-analysis").innerHTML=
+        pageHeading("AI DATA ANALYST","تحليل رقمي وتصنيفي وزمني وعلاقات محسوب من البيانات الحالية")
+        +(nums.length?`<article class="card table-card"><div class="card-head" style="padding-bottom:14px"><div><h3>التحليل الرقمي</h3><p>Mean, Median, Mode, Range, Standard Deviation, Variance, Quartiles, Percentiles</p></div></div><div class="table-wrap"><table><thead><tr><th>العمود</th><th>Mean</th><th>Median</th><th>Mode</th><th>Min</th><th>Max</th><th>Range</th><th>Std</th><th>Variance</th><th>Q1</th><th>Q3</th><th>P90</th></tr></thead><tbody>${numericRows}</tbody></table></div></article>`:chartEmpty("لم يتم اكتشاف أعمدة رقمية قابلة للتحليل."))
+        +(nums[0]?`<article class="card section-gap"><div class="card-head"><div><h3>Box Plot — ${escapeHTML(nums[0].name)}</h3><p>ملخص التوزيع والربيعات</p></div><span class="badge">Box Plot</span></div>${boxPlotHTML(nums[0].name,a.stats[nums[0].name])}</article>`:"")
+        +(cat?`<div class="grid-2 section-gap"><article class="card chart-card"><div class="card-head"><div><h3>توزيع ${escapeHTML(cat.name)}</h3><p>${cat.unique} فئة</p></div><span class="badge">Bar</span></div><div class="chart-wrap"><canvas id="analysisBar"></canvas></div></article><article class="card chart-card"><div class="card-head"><div><h3>نسب ${escapeHTML(cat.name)}</h3><p>أعلى الفئات بحسب العدد</p></div><span class="badge">Donut</span></div><div class="chart-wrap"><canvas id="analysisDonut"></canvas></div></article></div>
+        <article class="card table-card section-gap"><div class="table-wrap"><table><thead><tr><th>الفئة</th><th>العدد</th><th>النسبة</th></tr></thead><tbody>${catCounts.slice(0,100).map(x=>`<tr><td>${escapeHTML(x.label)}</td><td>${formatNumber(x.count,0)}</td><td>${formatNumber(x.ratio)}%</td></tr>`).join("")}</tbody></table></div></article>`:"")
+        +(date?`<article class="card chart-card section-gap"><div class="card-head"><div><h3>التحليل الزمني — ${escapeHTML(date.name)}</h3><p>تجميع ${escapeHTML(trend.grain)} حسب النطاق المتاح</p></div><span class="badge">Trend</span></div><div class="chart-wrap"><canvas id="analysisTrend"></canvas></div></article>`:"")
+        +(a.corr.columns.length>=2?`<article class="card section-gap"><div class="card-head"><div><h3>تحليل العلاقات</h3><p>Correlation Matrix وHeatmap</p></div></div>${correlationMatrixHTML(a.corr)}</article>`:"")
+        +`<article class="card table-card section-gap"><div class="card-head" style="padding-bottom:14px"><div><h3>القيم الشاذة — IQR</h3><p>لا تُحذف تلقائيًا</p></div></div>${outRows?`<div class="table-wrap"><table><thead><tr><th>العمود</th><th>العدد</th><th>النسبة</th><th>أمثلة</th><th>الحدود</th></tr></thead><tbody>${outRows}</tbody></table></div>`:chartEmpty("لم تُكتشف قيم شاذة بطريقة IQR.")}</article>`;
+      renderAnalysisCharts(catCounts,trend,a,rows);
+    }
+    function renderAnalysisCharts(catCounts,trend,a,rows){
+      ["analysisBar","analysisDonut","analysisTrend"].forEach(destroyChart);
+      if($("#analysisBar")){
+        const x=catCounts.slice(0,15);
+        state.charts.analysisBar=new Chart($("#analysisBar"),{type:"bar",data:{labels:x.map(v=>v.label),datasets:[{label:"العدد",data:x.map(v=>v.count),backgroundColor:COLORS,borderRadius:6}]},options:chartOptions("الفئة","عدد السجلات",false)});
+      }
+      if($("#analysisDonut")){
+        const x=catCounts.slice(0,9),rest=catCounts.slice(9).reduce((s,v)=>s+v.count,0);
+        if(rest)x.push({label:"فئات أخرى",count:rest});
+        state.charts.analysisDonut=new Chart($("#analysisDonut"),{type:"doughnut",data:{labels:x.map(v=>v.label),datasets:[{data:x.map(v=>v.count),backgroundColor:COLORS,borderWidth:2,borderColor:getComputedStyle(document.body).getPropertyValue("--surface").trim()}]},options:{responsive:true,maintainAspectRatio:true,aspectRatio:1.75,plugins:{legend:{display:true,position:"bottom",labels:{usePointStyle:true,boxWidth:8}}}}});
+      }
+      if($("#analysisTrend")&&trend){
+        state.charts.analysisTrend=new Chart($("#analysisTrend"),{type:"line",data:{labels:trend.points.map(x=>x.label),datasets:[{label:state.chartMetric||"عدد السجلات",data:trend.points.map(x=>x.value),borderColor:"#10b981",backgroundColor:"rgba(16,185,129,.12)",fill:true,tension:.28}]},options:chartOptions("الفترة",state.chartMetric||"العدد",false)});
+      }
+    }
+
+    function sortedTableRows(){
+      const rows=[...getFilteredRows()];
+      if(state.sort.column){
+        const p=state.baseAnalysis.profiles.find(x=>x.name===state.sort.column);
+        rows.sort((a,b)=>{
+          let x=a[state.sort.column],y=b[state.sort.column],cmp=0;
+          if(["رقم","عملة","نسبة مئوية"].includes(p?.type))cmp=(parseNumber(x)??-Infinity)-(parseNumber(y)??-Infinity);
+          else if(p?.type==="تاريخ")cmp=(parseDate(x)?.getTime()??-Infinity)-(parseDate(y)?.getTime()??-Infinity);
+          else cmp=valueString(x).localeCompare(valueString(y),"ar");
+          return state.sort.direction==="asc"?cmp:-cmp;
+        });
+      }
+      return rows;
+    }
+    function simpleTable(rows,headers,limit=10){
+      if(!rows.length)return chartEmpty("لا توجد بيانات للعرض.");
+      return `<div class="table-wrap" style="max-height:350px"><table><thead><tr>${headers.map(h=>`<th>${escapeHTML(h)}</th>`).join("")}</tr></thead><tbody>${rows.slice(0,limit).map(r=>`<tr>${headers.map(h=>`<td title="${escapeHTML(valueString(r[h]))}">${escapeHTML(valueString(r[h])||"—")}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+    }
+    function renderTable(){
+      const headers=currentHeaders(),visible=headers.filter(h=>!state.hiddenColumns.has(h)),all=sortedTableRows(),pages=Math.max(1,Math.ceil(all.length/PAGE_SIZE));
+      state.page=Math.min(state.page,pages);
+      const start=(state.page-1)*PAGE_SIZE,rows=all.slice(start,start+PAGE_SIZE);
+      const pageNums=[];
+      for(let i=Math.max(1,state.page-2);i<=Math.min(pages,state.page+2);i++)pageNums.push(i);
+      $("#section-table").innerHTML=
+        pageHeading("DATA TABLE","بحث وفرز وتصفية وتحرير وإضافة وحذف مع Pagination",
+          `<button class="btn btn-secondary btn-sm" id="columnVisibilityBtn">إظهار الأعمدة</button><button class="btn btn-secondary btn-sm" id="freezeBtn">${state.frozen?"إلغاء التثبيت":"تثبيت أول عمود"}</button><button class="btn ${state.editMode?"btn-success":"btn-secondary"} btn-sm" id="editModeBtn">${state.editMode?"إنهاء التحرير":"تحرير"}</button><button class="btn btn-primary btn-sm" id="addRowBtn">إضافة صف</button>`)
+        +`<article class="card table-card"><div class="table-toolbar"><div class="search-box"><input id="tableSearch" type="text" placeholder="ابحث في كل الأعمدة..." value="${escapeHTML(state.search)}"></div><span class="muted small">عرض ${formatNumber(start+1,0)}–${formatNumber(Math.min(start+PAGE_SIZE,all.length),0)} من ${formatNumber(all.length,0)}</span></div>
+          <div class="table-wrap"><table><thead><tr><th>#</th>${visible.map((h,i)=>`<th class="sortable ${state.frozen&&i===0?"frozen-cell":""}" data-sort="${escapeHTML(h)}">${escapeHTML(h)} ${state.sort.column===h?(state.sort.direction==="asc"?"↑":"↓"):""}</th>`).join("")}<th>إجراء</th></tr></thead>
+          <tbody>${rows.map((r,ri)=>`<tr><td>${formatNumber(start+ri+1,0)}</td>${visible.map((h,i)=>`<td class="${state.frozen&&i===0?"frozen-cell":""}" title="${escapeHTML(valueString(r[h]))}">${state.editMode?`<input class="cell-input" data-row="${r.__dwid}" data-col="${escapeHTML(h)}" value="${escapeHTML(valueString(r[h]))}">`:escapeHTML(valueString(r[h])||"—")}</td>`).join("")}<td><button class="btn btn-danger btn-sm delete-row" data-row="${r.__dwid}">حذف</button></td></tr>`).join("")}</tbody></table></div>
+          <div class="pagination"><span class="muted small">${PAGE_SIZE} صفًا لكل صفحة</span><div class="page-controls"><button class="page-btn" data-page="${Math.max(1,state.page-1)}">‹</button>${pageNums.map(p=>`<button class="page-btn ${p===state.page?"active":""}" data-page="${p}">${p}</button>`).join("")}<button class="page-btn" data-page="${Math.min(pages,state.page+1)}">›</button></div></div>
+        </article>`;
+      bindTable();
+    }
+    const searchRefresh=debounce(v=>{state.search=v;state.page=1;refreshAfterFilter()},300);
+    function bindTable(){
+      $("#tableSearch")?.addEventListener("input",e=>searchRefresh(e.target.value));
+      $$(".sortable").forEach(th=>th.addEventListener("click",()=>{
+        const c=th.dataset.sort;
+        state.sort.direction=state.sort.column===c&&state.sort.direction==="asc"?"desc":"asc";state.sort.column=c;renderTable();
+      }));
+      $$(".page-btn").forEach(b=>b.addEventListener("click",()=>{state.page=Number(b.dataset.page);renderTable()}));
+      $("#editModeBtn")?.addEventListener("click",()=>{state.editMode=!state.editMode;renderTable()});
+      $("#freezeBtn")?.addEventListener("click",()=>{state.frozen=!state.frozen;renderTable()});
+      $("#addRowBtn")?.addEventListener("click",async()=>{
+        const r=Object.fromEntries(currentHeaders().map(h=>[h,null]));addIds([r]);currentRows().push(r);
+        await reanalyzeCurrent();state.page=Math.ceil(getFilteredRows().length/PAGE_SIZE);renderTable();toast("تمت إضافة صف إلى النسخة الحالية.","success");
+      });
+      $$(".delete-row").forEach(b=>b.addEventListener("click",async()=>{
+        const id=Number(b.dataset.row),i=currentRows().findIndex(r=>r.__dwid===id);
+        if(i>=0){currentRows().splice(i,1);await reanalyzeCurrent();toast("تم حذف الصف من النسخة الحالية.")}
+      }));
+      $$(".cell-input").forEach(inp=>inp.addEventListener("change",debounce(async e=>{
+        const id=Number(e.target.dataset.row),col=e.target.dataset.col,row=currentRows().find(r=>r.__dwid===id);
+        if(row){row[col]=e.target.value;await reanalyzeCurrent();toast("تم تحديث الخلية في النسخة الحالية.","success")}
+      },180)));
+      $("#columnVisibilityBtn")?.addEventListener("click",renderColumnPanel);
+    }
+    function renderColumnPanel(){
+      const p=$("#columnPanel");
+      p.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><strong>إظهار الأعمدة</strong><button class="icon-btn" id="closeColumns">×</button></div><div style="margin-top:8px">${currentHeaders().map(h=>`<label class="column-option"><input type="checkbox" data-column="${escapeHTML(h)}" ${state.hiddenColumns.has(h)?"":"checked"}>${escapeHTML(h)}</label>`).join("")}</div>`;
+      p.classList.remove("hidden");
+      $("#closeColumns").onclick=()=>p.classList.add("hidden");
+      p.querySelectorAll("input").forEach(x=>x.addEventListener("change",()=>{
+        x.checked?state.hiddenColumns.delete(x.dataset.column):state.hiddenColumns.add(x.dataset.column);renderTable();
+      }));
+    }
+
+    function renderAsk(){
+      if(!state.chat.length)state.chat=[{role:"ai",text:"مرحبًا، أنا محلل DATAWISE المحلي. أسألني عن أعلى أو أقل قيمة، أكثر فئة، أفضل فترة، القيم الشاذة، الجودة أو أهم الاستنتاجات. سأستخدم البيانات الحالية فقط."}];
+      $("#section-ask").innerHTML=
+        pageHeading("ASK YOUR DATA","الإجابات تعتمد على Dataset الحالية والصفوف المطابقة للفلاتر فقط")
+        +`<div class="ask-layout"><article class="card chat-card"><div id="chatMessages" class="chat-messages">${state.chat.map(m=>`<div class="message ${m.role}">${escapeHTML(m.text)}</div>`).join("")}</div><div class="chat-input"><textarea id="questionInput" placeholder="اكتب سؤالك عن البيانات..."></textarea><button class="btn btn-primary" id="askBtn">إرسال</button></div></article>
+        <aside class="card"><div class="card-head"><div><h3>أسئلة مقترحة</h3><p>اضغط لإرسال السؤال</p></div></div><div class="prompt-list">${["ما أعلى قيمة؟","ما أقل قيمة؟","ما أكثر فئة؟","ما أفضل شهر؟","هل توجد قيم شاذة؟","ما أهم الاستنتاجات؟","ما الأعمدة التي تحتوي مشاكل؟","ما متوسط العمود الرقمي الرئيسي؟"].map(q=>`<button class="prompt-btn">${q}</button>`).join("")}</div></aside></div>`;
+      const send=()=>{
+        const input=$("#questionInput"),q=input.value.trim();if(!q)return;
+        state.chat.push({role:"user",text:q},{role:"ai",text:answerQuestion(q)});
+        renderAsk();setTimeout(()=>{const el=$("#chatMessages");if(el)el.scrollTop=el.scrollHeight},0);
+      };
+      $("#askBtn").onclick=send;
+      $("#questionInput").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}});
+      $$(".prompt-btn").forEach(b=>b.onclick=()=>{$("#questionInput").value=b.textContent;send()});
+    }
+    function resolveColumn(question,profiles,types=null){
+      const q=normalizeText(question);
+      const pool=types?profiles.filter(p=>types.includes(p.type)):profiles;
+      return pool.find(p=>q.includes(normalizeText(p.name)))||pool[0]||null;
+    }
+    function answerQuestion(question){
+      const q=normalizeText(question),rows=getFilteredRows(),a=state.analysis,p=a.profiles;
+      if(!rows.length)return "لا توجد صفوف مطابقة للفلاتر الحالية.";
+      const nums=numericProfiles(p),num=resolveColumn(q,p,["رقم","عملة","نسبة مئوية"]),cat=resolveColumn(q,p,["فئة","نص"]),date=primaryDate(p);
+      if(/أعلى|اعلى|اكبر|أكبر|maximum|max/.test(q)){
+        if(!num)return "لم أجد عمودًا رقميًا صالحًا لحساب أعلى قيمة.";
+        const values=rows.map(r=>({v:parseNumber(r[num.name]),r})).filter(x=>x.v!==null).sort((a,b)=>b.v-a.v);
+        return values.length?`أعلى قيمة في «${num.name}» هي ${formatNumber(values[0].v)}${num.unit?` ${num.unit}`:""}. تم حسابها من ${formatNumber(values.length,0)} قيمة صالحة.`:"لا توجد قيم رقمية صالحة.";
+      }
+      if(/أقل|اقل|اصغر|أصغر|minimum|min/.test(q)){
+        if(!num)return "لم أجد عمودًا رقميًا صالحًا لحساب أقل قيمة.";
+        const values=rows.map(r=>parseNumber(r[num.name])).filter(x=>x!==null);
+        return values.length?`أقل قيمة في «${num.name}» هي ${formatNumber(Math.min(...values))}${num.unit?` ${num.unit}`:""}.`:"لا توجد قيم رقمية صالحة.";
+      }
+      if(/أكثر فئة|اكثر فئة|الأكثر تكرار|الاكثر تكرار|mode/.test(q)){
+        if(!cat)return "لم أجد عمودًا تصنيفيًا مناسبًا.";
+        const counts=categoryCounts(rows,cat.name),x=counts[0];
+        return x?`أكثر فئة في «${cat.name}» هي «${x.label}» بعدد ${formatNumber(x.count,0)}، وتمثل ${formatNumber(x.ratio)}% من الصفوف الحالية.`:"لا توجد فئات قابلة للحساب.";
+      }
+      if(/أفضل شهر|افضل شهر|best month|أفضل فترة|افضل فترة/.test(q)){
+        if(!date)return "لم يتم اكتشاف عمود تاريخ صالح.";
+        const metric=num||nums[0],trend=aggregateTime(rows,date.name,metric?.name);
+        if(!trend.points.length)return "لا توجد قيم زمنية كافية.";
+        const best=[...trend.points].sort((a,b)=>b.value-a.value)[0];
+        return `أفضل ${trend.grain} حسب ${metric?`«${metric.name}»`:"عدد السجلات"} هو ${best.label} بقيمة ${formatNumber(best.value)}${metric?.unit?` ${metric.unit}`:""}.`;
+      }
+      if(/قارن|مقارنة|compare/.test(q)){
+        if(!date)return "لا يمكن إجراء مقارنة زمنية لأن البيانات لا تحتوي تاريخًا صالحًا.";
+        const periods=[...q.matchAll(/\b(20\d{2}(?:-\d{1,2})?)\b/g)].map(x=>x[1]);
+        if(periods.length<2)return "اذكر فترتين بصيغة 2024 و2025 أو 2024-01 و2024-02 لإجراء المقارنة.";
+        const metric=num||nums[0],values=periods.slice(0,2).map(period=>{
+          const subset=rows.filter(r=>{const d=parseDate(r[date.name]);if(!d)return false;const key=period.includes("-")?`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`:`${d.getFullYear()}`;return key===period});
+          const ns=metric?subset.map(r=>parseNumber(r[metric.name])).filter(x=>x!==null):[];
+          return {period,count:subset.length,value:metric?(isAdditive(metric.name)?ns.reduce((a,b)=>a+b,0):(ns.length?ns.reduce((a,b)=>a+b,0)/ns.length:0)):subset.length};
+        });
+        const diff=values[0].value?((values[1].value-values[0].value)/Math.abs(values[0].value))*100:null;
+        return `${values[0].period}: ${formatNumber(values[0].value)}، ${values[1].period}: ${formatNumber(values[1].value)}.${diff===null?"":` التغير ${diff>=0?"ارتفاع":"انخفاض"} ${formatNumber(Math.abs(diff))}%.`}`;
+      }
+      if(/شاذ|متطرف|outlier/.test(q)){
+        if(!a.outliers.length)return "لم تُكتشف قيم شاذة بطريقة IQR في الصفوف الحالية.";
+        return `نعم. رُصدت ${formatNumber(a.outliers.reduce((s,o)=>s+o.count,0),0)} قيمة شاذة في ${a.outliers.length} عمود: `+a.outliers.map(o=>`${o.column} (${o.count})`).join("، ")+".";
+      }
+      if(/مشاكل|مشكلة|جودة|فارغ|ناقص|خطأ|اخطاء/.test(q)){
+        const issues=p.filter(x=>x.missing||x.invalid).map(x=>`${x.name}: ${x.missing} فارغ، ${x.invalid} غير صالح`);
+        if(a.dup.count)issues.push(`الصفوف المكررة: ${a.dup.count}`);
+        if(a.inc.total)issues.push(`الفئات غير المتناسقة: ${a.inc.total}`);
+        return issues.length?`الأعمدة أو المشكلات المكتشفة:\n• ${issues.join("\n• ")}`:`درجة الجودة ${a.quality.score}/100 ولم تُكتشف فراغات أو أخطاء أنواع أو تكرارات واضحة.`;
+      }
+      if(/متوسط|average|mean/.test(q)){
+        if(!num||!a.stats[num.name])return "لم أجد عمودًا رقميًا مناسبًا.";
+        return `متوسط «${num.name}» هو ${formatNumber(a.stats[num.name].mean)}${num.unit?` ${num.unit}`:""}، محسوب من ${formatNumber(a.stats[num.name].count,0)} قيمة صالحة.`;
+      }
+      if(/مجموع|إجمالي|اجمالي|sum/.test(q)){
+        if(!num||!a.stats[num.name])return "لم أجد عمودًا رقميًا مناسبًا.";
+        return `مجموع «${num.name}» هو ${formatNumber(a.stats[num.name].sum)}${num.unit?` ${num.unit}`:""}.`;
+      }
+      if(/وسيط|median/.test(q)){
+        if(!num||!a.stats[num.name])return "لم أجد عمودًا رقميًا مناسبًا.";
+        return `وسيط «${num.name}» هو ${formatNumber(a.stats[num.name].median)}${num.unit?` ${num.unit}`:""}.`;
+      }
+      if(/استنتاج|ملخص|نتائج|insight/.test(q))return "أهم الاستنتاجات الحالية:\n• "+a.insights.join("\n• ");
+      if(/عدد|count|صف/.test(q))return `عدد الصفوف المطابقة حاليًا هو ${formatNumber(rows.length,0)} من أصل ${formatNumber(currentRows().length,0)} صف، وعدد الأعمدة ${currentHeaders().length}.`;
+      return `لم أفهم الطلب بدقة. يمكنني الإجابة عن أعلى/أقل قيمة، المتوسط والمجموع والوسيط، أكثر فئة، أفضل فترة، المقارنة بين فترتين، القيم الشاذة، الجودة وأهم الاستنتاجات. اذكر اسم العمود إن أردت نتيجة محددة.`;
+    }
+
+    function recommendations(a){
+      const r=[];
+      if(a.quality.missing)r.push(`مراجعة ${formatNumber(a.quality.missing,0)} قيمة فارغة، واختيار معالجة مناسبة لكل عمود بدل ملئها عشوائيًا.`);
+      if(a.quality.duplicates)r.push(`مراجعة ${formatNumber(a.quality.duplicates,0)} صف مكرر قبل اعتماد المجاميع والمؤشرات.`);
+      if(a.quality.invalid)r.push(`تصحيح ${formatNumber(a.quality.invalid,0)} قيمة لا تطابق النوع المستنتج.`);
+      if(a.outliers.length)r.push("التحقق من القيم الشاذة مع مصدر البيانات قبل حذفها؛ فقد تكون أحداثًا صحيحة ومهمة.");
+      if(a.inc.total)r.push("توحيد صيغ الفئات والمسافات لمنع تقسيم الفئة الواحدة إلى تسميات متعددة.");
+      if(!r.length)r.push("الحفاظ على قواعد الإدخال الحالية وإعادة فحص الجودة عند إضافة بيانات جديدة.");
+      return r;
+    }
+    async function createReport(){
+      const previous=state.activeSection;
+      if(previous!=="dashboard"){switchSection("dashboard");await sleep(260)}
+      const images={};
+      ["dashCategory","dashTrend","dashHistogram","dashScatter"].forEach(id=>{const c=$("#"+id);if(c)try{images[id]=c.toDataURL("image/png",1)}catch(_){}});
+      const a=state.analysis,rows=getFilteredRows(),domain=state.domainManual==="تلقائي"?a.domain.name:state.domainManual;
+      state.reportHTML=`<div class="report-paper" id="reportContent">
+        <div style="display:flex;justify-content:space-between;gap:20px;align-items:flex-start;border-bottom:4px solid #4f46e5;padding-bottom:20px">
+          <div><h1>DATAWISE</h1><strong style="color:#4f46e5">AI DATA ANALYST</strong><p>ارفع بياناتك، دعنا نفهمها.</p></div>
+          <div style="text-align:left"><strong>${escapeHTML(state.fileName)}</strong><p>${new Date().toLocaleString("ar-EG")}</p></div>
+        </div>
+        <h2>الملخص التنفيذي</h2>
+        <p>تم تحليل ${formatNumber(rows.length,0)} صف و${a.columnCount} عمود من الجدول «${escapeHTML(currentSheet().name)}». يبدو أن البيانات تنتمي إلى «${escapeHTML(domain)}». بلغت جودة البيانات ${a.quality.score}/100 بتصنيف «${a.quality.label}».</p>
+        <ul>${a.insights.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>
+        <h2>وصف البيانات</h2>
+        <p>حجم الملف: ${formatBytes(state.fileSize)} · عدد الجداول/الأوراق: ${state.sheets.length} · الصفوف الأصلية في الورقة: ${formatNumber(originalRows().length,0)}.</p>
+        <table><thead><tr><th>العمود</th><th>النوع</th><th>القيم</th><th>الفارغ</th><th>الفريد</th></tr></thead><tbody>${a.profiles.map(p=>`<tr><td>${escapeHTML(p.name)}</td><td>${escapeHTML(p.type)}</td><td>${p.count}</td><td>${p.missing}</td><td>${p.unique}</td></tr>`).join("")}</tbody></table>
+        <h2>جودة البيانات</h2>
+        <p>النتيجة: <strong>${a.quality.score}/100 — ${a.quality.label}</strong>. القيم الفارغة: ${a.quality.missing}، التكرارات: ${a.quality.duplicates}، القيم غير الصالحة: ${a.quality.invalid}، القيم الشاذة: ${a.quality.outlierCount}، الفئات غير المتناسقة: ${a.quality.inconsistent}.</p>
+        <h2>مؤشرات الأداء</h2>
+        <div class="report-kpis">${a.kpis.map(k=>`<div class="report-kpi"><small>${escapeHTML(k.name)}</small><strong>${formatNumber(k.value)} ${escapeHTML(k.unit||"")}</strong><small>${escapeHTML(k.method)}</small></div>`).join("")}</div>
+        <h2>الرسوم والاتجاهات</h2>
+        ${Object.values(images).map(src=>`<img class="report-chart" src="${src}">`).join("")||"<p>لا تتوفر رسوم مناسبة لأنواع الأعمدة الحالية.</p>"}
+        <h2>العلاقات والارتباطات</h2>
+        ${a.corr.pairs.length?`<p>أقوى الارتباطات: ${a.corr.pairs.slice(0,5).map(c=>`${escapeHTML(c.a)} ↔ ${escapeHTML(c.b)} (${formatNumber(c.value,3)})`).join("، ")}. الارتباط لا يثبت السببية.</p>`:"<p>لا توجد أعمدة رقمية كافية لحساب علاقات الارتباط.</p>"}
+        <h2>القيم الشاذة</h2>
+        ${a.outliers.length?`<table><thead><tr><th>العمود</th><th>العدد</th><th>النسبة</th><th>أمثلة</th></tr></thead><tbody>${a.outliers.map(o=>`<tr><td>${escapeHTML(o.column)}</td><td>${o.count}</td><td>${formatNumber(o.ratio)}%</td><td>${escapeHTML(o.values.map(formatNumber).join("، "))}</td></tr>`).join("")}</tbody></table>`:"<p>لم تُكتشف قيم شاذة بطريقة IQR.</p>"}
+        <h2>النتائج والتوصيات</h2>
+        <ul>${recommendations(a).map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>
+        <h2>الخلاصة</h2>
+        <p>يعكس هذا التقرير البيانات والفلاتر الحالية وقت الإنشاء فقط، ولم تُستخدم نتائج أو أرقام من خارج الملف. يجب التحقق من السياق المهني قبل اتخاذ قرارات نهائية.</p>
+      </div>`;
+      renderReport();
+      switchSection("report");
+    }
+    function renderReport(){
+      $("#section-report").innerHTML=
+        pageHeading("REPORT","تقرير مهني مبني من التحليل الحالي",
+          `<div class="report-actions inline-actions"><button class="btn btn-secondary btn-sm" id="printReport">طباعة / حفظ PDF</button><button class="btn btn-primary btn-sm" id="refreshReport">إعادة إنشاء التقرير</button></div>`)
+        +(state.reportHTML||`<div class="empty"><div class="empty-icon">▧</div><p>لم يتم إنشاء التقرير بعد.</p><button class="btn btn-primary" id="emptyReportBtn">إنشاء تقرير الآن</button></div>`);
+      $("#printReport")?.addEventListener("click",()=>window.print());
+      $("#refreshReport")?.addEventListener("click",createReport);
+      $("#emptyReportBtn")?.addEventListener("click",createReport);
+    }
+
+    function renderExport(){
+      $("#section-export").innerHTML=
+        pageHeading("EXPORT CENTER","أزرار التصدير أدناه تنشئ ملفات فعلية داخل المتصفح")
+        +`<div class="filter-panel"><div class="field-inline"><label>مصدر البيانات</label><select id="exportSource"><option value="current">النسخة الحالية / المنظفة</option><option value="original">البيانات الأصلية</option></select></div></div>
+        <div class="export-grid">
+          <article class="card export-card"><h3>تصدير البيانات</h3><p>ملفات قابلة لإعادة الاستخدام في أدوات البيانات والجداول.</p><div class="export-actions">
+            <button class="btn btn-secondary btn-sm export-btn" data-format="csv">CSV</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="tsv">TSV</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="xlsx">XLSX</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="ods">ODS</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="json">JSON</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="xml">XML</button>
+          </div></article>
+          <article class="card export-card"><h3>تصدير التقرير والتحليل</h3><p>ملخص تنفيذي وجودة ومؤشرات واتجاهات وتوصيات.</p><div class="export-actions">
+            <button class="btn btn-secondary btn-sm export-btn" data-format="html">HTML</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="pdf">PDF</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="docx">DOCX</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="pptx">PPTX</button>
+          </div></article>
+          <article class="card export-card"><h3>تصدير Dashboard والرسوم</h3><p>صور فعلية من لوحة البيانات الحالية أو رسم SVG مولّد من البيانات.</p><div class="export-actions">
+            <button class="btn btn-secondary btn-sm export-btn" data-format="png">PNG</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="jpg">JPG</button>
+            <button class="btn btn-secondary btn-sm export-btn" data-format="svg">SVG</button>
+          </div></article>
+        </div>`;
+      $$(".export-btn").forEach(b=>b.onclick=()=>exportFormat(b.dataset.format));
+    }
+    function exportRows(source){
+      return source==="original"?originalRows():currentRows();
+    }
+    function rowForExport(row){return Object.fromEntries(currentHeaders().map(h=>[h,safeJSONValue(row[h])]))}
+    function csvString(rows,delimiter=","){
+      const quote=v=>{const s=valueString(v);return /["\r\n,\t;]/.test(s)||s.includes(delimiter)?`"${s.replace(/"/g,'""')}"`:s};
+      return "\uFEFF"+[currentHeaders().map(quote).join(delimiter),...rows.map(r=>currentHeaders().map(h=>quote(r[h])).join(delimiter))].join("\r\n");
+    }
+    async function ensureReport(){
+      if(!state.reportHTML)await createReport();
+    }
+    async function exportFormat(format){
+      try{
+        const source=$("#exportSource")?.value||"current",rows=exportRows(source),base=fileBase();
+        if(format==="csv")return downloadBlob(new Blob([csvString(rows,",")],{type:"text/csv;charset=utf-8"}),`${base}_${source}.csv`);
+        if(format==="tsv")return downloadBlob(new Blob([csvString(rows,"\t")],{type:"text/tab-separated-values;charset=utf-8"}),`${base}_${source}.tsv`);
+        if(format==="json")return downloadBlob(new Blob([JSON.stringify(rows.map(rowForExport),null,2)],{type:"application/json"}),`${base}_${source}.json`);
+        if(format==="xml"){
+          const xml=`<?xml version="1.0" encoding="UTF-8"?>\n<data sheet="${escapeXML(currentSheet().name)}">\n${rows.map(r=>`  <row>\n${currentHeaders().map(h=>`    <field name="${escapeXML(h)}">${escapeXML(valueString(r[h]))}</field>`).join("\n")}\n  </row>`).join("\n")}\n</data>`;
+          return downloadBlob(new Blob([xml],{type:"application/xml"}),`${base}_${source}.xml`);
+        }
+        if(format==="xlsx"||format==="ods"){
+          const wb=XLSX.utils.book_new();
+          state.sheets.forEach(s=>{
+            const data=(source==="original"?s.originalRows:s.rows).map(r=>Object.fromEntries(s.headers.map(h=>[h,safeJSONValue(r[h])])));
+            XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(data,{header:s.headers}),s.name.slice(0,31)||"Data");
+          });
+          return XLSX.writeFile(wb,`${base}_${source}.${format}`,{bookType:format});
+        }
+        if(["html","pdf","docx","pptx"].includes(format))await ensureReport();
+        if(format==="html"){
+          const html=`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>DATAWISE Report</title><style>body{font-family:Arial;background:#f5f7fb;padding:30px}.report-paper{background:#fff;padding:40px;max-width:960px;margin:auto}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px;text-align:right}.report-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.report-kpi{border:1px solid #ddd;padding:12px}.report-kpi strong{display:block}.report-chart{max-width:100%}</style></head><body>${state.reportHTML}</body></html>`;
+          return downloadBlob(new Blob([html],{type:"text/html;charset=utf-8"}),`${base}_report.html`);
+        }
+        if(format==="pdf"){
+          switchSection("report");await sleep(200);
+          const canvas=await html2canvas($("#reportContent"),{scale:1.8,backgroundColor:"#ffffff",useCORS:true});
+          const img=canvas.toDataURL("image/jpeg",.94),{jsPDF}=window.jspdf,pdf=new jsPDF("p","mm","a4");
+          const pw=210,ph=297,imgH=canvas.height*pw/canvas.width;
+          let heightLeft=imgH,pos=0;
+          pdf.addImage(img,"JPEG",0,pos,pw,imgH);heightLeft-=ph;
+          while(heightLeft>0){pos=heightLeft-imgH;pdf.addPage();pdf.addImage(img,"JPEG",0,pos,pw,imgH);heightLeft-=ph}
+          return pdf.save(`${base}_report.pdf`);
+        }
+        if(format==="docx")return exportDOCX(base);
+        if(format==="pptx")return exportPPTX(base);
+        if(["png","jpg"].includes(format)){
+          switchSection("dashboard");await sleep(280);
+          const el=$("#section-dashboard"),canvas=await html2canvas(el,{scale:1.5,backgroundColor:getComputedStyle(document.body).getPropertyValue("--bg").trim(),useCORS:true});
+          canvas.toBlob(blob=>downloadBlob(blob,`${base}_dashboard.${format}`),format==="png"?"image/png":"image/jpeg",.93);
+          return;
+        }
+        if(format==="svg")return exportSVG(base);
+      }catch(e){console.error(e);toast(`تعذر التصدير: ${e.message}`,"error")}
+    }
+    async function exportDOCX(base){
+      if(!window.docx)throw new Error("مكتبة DOCX غير متاحة.");
+      const {Document,Packer,Paragraph,TextRun,HeadingLevel,Table,TableRow,TableCell}=window.docx,a=state.analysis;
+      const children=[
+        new Paragraph({heading:HeadingLevel.TITLE,children:[new TextRun({text:"DATAWISE – AI DATA ANALYST",bold:true})]}),
+        new Paragraph("ارفع بياناتك، دعنا نفهمها."),
+        new Paragraph({heading:HeadingLevel.HEADING_1,text:"الملخص التنفيذي"}),
+        new Paragraph(`تم تحليل ${a.rowCount} صف و${a.columnCount} عمود. جودة البيانات ${a.quality.score}/100 (${a.quality.label}).`),
+        ...a.insights.map(x=>new Paragraph({text:x,bullet:{level:0}})),
+        new Paragraph({heading:HeadingLevel.HEADING_1,text:"مؤشرات الأداء"}),
+        new Table({rows:[
+          new TableRow({children:["المؤشر","القيمة","طريقة الحساب"].map(x=>new TableCell({children:[new Paragraph(x)]}))}),
+          ...a.kpis.map(k=>new TableRow({children:[k.name,`${formatNumber(k.value)} ${k.unit||""}`,k.method].map(x=>new TableCell({children:[new Paragraph(x)]}))}))
+        ]}),
+        new Paragraph({heading:HeadingLevel.HEADING_1,text:"التوصيات"}),
+        ...recommendations(a).map(x=>new Paragraph({text:x,bullet:{level:0}}))
+      ];
+      const doc=new Document({sections:[{properties:{},children}]});
+      const blob=await Packer.toBlob(doc);downloadBlob(blob,`${base}_report.docx`);
+    }
+    async function exportPPTX(base){
+      if(!window.PptxGenJS)throw new Error("مكتبة PPTX غير متاحة.");
+      const pptx=new PptxGenJS();pptx.layout="LAYOUT_WIDE";pptx.author="DATAWISE";pptx.subject="Data Analysis";
+      let slide=pptx.addSlide();slide.background={color:"F7F8FC"};
+      slide.addText("DATAWISE",{x:.6,y:1.25,w:11.8,h:.6,fontSize:30,bold:true,color:"4F46E5",align:"right",rtlMode:true});
+      slide.addText("AI DATA ANALYST",{x:.6,y:1.9,w:11.8,h:.45,fontSize:18,color:"0F172A",align:"right"});
+      slide.addText(`${state.fileName}\n${formatNumber(state.analysis.rowCount,0)} صف · ${state.analysis.columnCount} عمود`,{x:.6,y:2.7,w:11.8,h:1,fontSize:18,color:"475569",align:"right",rtlMode:true});
+      slide=pptx.addSlide();slide.addText("مؤشرات الأداء",{x:.5,y:.35,w:12,h:.5,fontSize:24,bold:true,color:"3730A3",align:"right",rtlMode:true});
+      state.analysis.kpis.slice(0,4).forEach((k,i)=>{
+        const x=.6+(i%2)*6.2,y=1.2+Math.floor(i/2)*2.3;
+        slide.addShape(pptx.ShapeType.roundRect,{x,y,w:5.8,h:1.8,fill:{color:"EEF2FF"},line:{color:"C7D2FE"},radius:.1});
+        slide.addText(k.name,{x:x+.25,y:y+.2,w:5.3,h:.35,fontSize:14,color:"64748B",align:"right",rtlMode:true});
+        slide.addText(`${formatNumber(k.value)} ${k.unit||""}`,{x:x+.25,y:y+.7,w:5.3,h:.55,fontSize:24,bold:true,color:"111827",align:"right",rtlMode:true});
+      });
+      slide=pptx.addSlide();slide.addText("أهم الاستنتاجات والتوصيات",{x:.5,y:.35,w:12,h:.5,fontSize:24,bold:true,color:"3730A3",align:"right",rtlMode:true});
+      slide.addText(state.analysis.insights.map(x=>({text:x,options:{bullet:{indent:18}}})),{x:.8,y:1.15,w:11.5,h:2.8,fontSize:16,color:"334155",breakLine:true,rtlMode:true,align:"right"});
+      slide.addText(recommendations(state.analysis).map(x=>({text:x,options:{bullet:{indent:18}}})),{x:.8,y:4.2,w:11.5,h:2.4,fontSize:15,color:"475569",breakLine:true,rtlMode:true,align:"right"});
+      await pptx.writeFile({fileName:`${base}_report.pptx`});
+    }
+    function exportSVG(base){
+      const rows=getFilteredRows(),cat=state.chartDimension||primaryCategory(state.analysis.profiles)?.name,metric=state.chartMetric;
+      let items,title,yLabel;
+      if(cat){
+        const agg=aggregateCategory(rows,cat,metric);items=agg.items.slice(0,12);title=`${agg.method} ${metric||"السجلات"} حسب ${cat}`;yLabel=agg.method;
+      }else{
+        items=state.analysis.kpis.map(k=>({label:k.name,value:Number(k.value)||0}));title="مؤشرات DATAWISE";yLabel="القيمة";
+      }
+      if(!items.length)throw new Error("لا توجد بيانات مناسبة لرسم SVG.");
+      const w=1200,h=700,pad=100,max=Math.max(...items.map(x=>Math.abs(x.value)),1),bw=(w-pad*2)/items.length*.65,gap=(w-pad*2)/items.length;
+      const bars=items.map((x,i)=>{
+        const bh=Math.abs(x.value)/max*430,bx=pad+i*gap+(gap-bw)/2,by=560-bh;
+        return `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="8" fill="${COLORS[i%COLORS.length]}"/><text x="${bx+bw/2}" y="${by-10}" text-anchor="middle" font-size="15" fill="#334155">${escapeXML(formatNumber(x.value))}</text><text x="${bx+bw/2}" y="590" text-anchor="middle" font-size="13" fill="#475569" transform="rotate(25 ${bx+bw/2} 590)">${escapeXML(String(x.label).slice(0,20))}</text>`;
+      }).join("");
+      const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><rect width="100%" height="100%" fill="#ffffff"/><text x="1100" y="55" text-anchor="end" font-family="Arial" font-size="30" font-weight="bold" fill="#111827">${escapeXML(title)}</text><text x="1100" y="82" text-anchor="end" font-family="Arial" font-size="15" fill="#64748b">DATAWISE · محسوب من البيانات الحالية</text><line x1="${pad}" y1="560" x2="${w-pad}" y2="560" stroke="#cbd5e1"/><line x1="${pad}" y1="120" x2="${pad}" y2="560" stroke="#cbd5e1"/>${bars}<text x="30" y="340" font-family="Arial" font-size="15" fill="#64748b" transform="rotate(-90 30 340)">${escapeXML(yLabel)}</text></svg>`;
+      downloadBlob(new Blob([svg],{type:"image/svg+xml;charset=utf-8"}),`${base}_chart.svg`);
+    }
+
+    async function saveProject(){
+      try{
+        const project={
+          magic:"DATAWISE_PROJECT",version:1,savedAt:new Date().toISOString(),
+          file:{name:state.fileName,size:state.fileSize,type:state.fileType},
+          sheets:state.sheets.map(s=>({name:s.name,headers:s.headers,originalRows:deepSerializable(s.originalRows.map(rowForSheet.bind(null,s.headers))),rows:deepSerializable(s.rows.map(rowForSheet.bind(null,s.headers)))})),
+          settings:{sheetIndex:state.sheetIndex,hiddenColumns:[...state.hiddenColumns],frozen:state.frozen,chartMetric:state.chartMetric,chartDimension:state.chartDimension,domainManual:state.domainManual,filters:state.filters},
+          history:state.appliedHistory,reportHTML:state.reportHTML
+        };
+        const text=JSON.stringify(project);
+        if(text.length>120*1024*1024)throw new Error("المشروع كبير جدًا للحفظ الآمن في ذاكرة المتصفح.");
+        downloadBlob(new Blob([text],{type:"application/json"}),`${fileBase()}.datawise_project`);
+        toast("تم تنزيل ملف المشروع.","success");
+      }catch(e){toast(e.message,"error")}
+    }
+    function rowForSheet(headers,row){return Object.fromEntries(headers.map(h=>[h,safeJSONValue(row[h])]))}
+    async function openProject(file){
+      showLoading();
+      try{
+        setPipeline(0,"فتح مشروع DATAWISE...");
+        const data=JSON.parse(await file.text());
+        if(data.magic!=="DATAWISE_PROJECT"||!Array.isArray(data.sheets))throw new Error("هذا الملف ليس مشروع DATAWISE صالحًا.");
+        const sheets=data.sheets.map(s=>{
+          const rows=(s.rows||[]).map(r=>({...r})),original=(s.originalRows||[]).map(r=>({...r}));
+          addIds(rows);addIds(original);return {name:s.name,headers:s.headers,rows,originalRows:original};
+        });
+        state.appliedHistory=data.history||[];state.reportHTML=data.reportHTML||"";
+        await initializeDataset(sheets,{name:data.file?.name||file.name,size:data.file?.size||file.size,type:data.file?.type||"project",...(data.settings||{})});
+        if(data.settings?.filters){state.filters=data.settings.filters;rebuildFilteredAnalysis();renderAllCore()}
+      }catch(e){$("#loadingOverlay").classList.add("hidden");toast(e.message||"تعذر فتح المشروع.","error")}
+    }
+
+    function switchSection(name){
+      state.activeSection=name;
+      $$(".nav-item").forEach(x=>x.classList.toggle("active",x.dataset.section===name));
+      $$(".content-section").forEach(x=>x.classList.toggle("active",x.id===`section-${name}`));
+      if(name==="dashboard")renderDashboard();
+      if(name==="analysis")renderAnalysis();
+      if(name==="table")renderTable();
+      if(name==="ask")renderAsk();
+      if(name==="report")renderReport();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    function bindGlobalEvents(){
+      const input=$("#fileInput"),project=$("#projectInput");
+      $("#browseBtn").onclick=()=>input.click();
+      $("#heroUploadBtn").onclick=()=>input.click();
+      $("#newFileBtn").onclick=()=>input.click();
+      input.onchange=e=>{handleFile(e.target.files[0]);e.target.value=""};
+      $(".open-project-btn")?.addEventListener("click",()=>project.click());
+      $$(".open-project-btn").forEach(b=>b.onclick=()=>project.click());
+      project.onchange=e=>{if(e.target.files[0])openProject(e.target.files[0]);e.target.value=""};
+      $("#sampleBtn").onclick=async()=>{
+        showLoading();
+        try{setPipeline(0,"إنشاء Dataset نموذجية محليًا...");await sleep(120);await initializeDataset(makeSample(),{name:"مبيعات_نموذجية.csv",size:0,type:"sample"})}
+        catch(e){$("#loadingOverlay").classList.add("hidden");toast(e.message,"error")}
+      };
+      const drop=$("#dropZone");
+      ["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add("drag")}));
+      ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove("drag")}));
+      drop.addEventListener("drop",e=>handleFile(e.dataTransfer.files[0]));
+      $$(".theme-toggle").forEach(b=>b.onclick=()=>{
+        document.body.classList.toggle("dark");
+        if(state.sheets.length){
+          if(state.activeSection==="dashboard")renderDashboard();
+          if(state.activeSection==="analysis")renderAnalysis();
+        }
+      });
+      $$(".nav-item").forEach(b=>b.onclick=()=>switchSection(b.dataset.section));
+      $("#sheetSelector").onchange=async e=>{
+        state.sheetIndex=Number(e.target.value);state.search="";state.sort={column:null,direction:"asc"};
+        state.hiddenColumns=new Set();state.chartMetric=null;state.chartDimension=null;
+        state.baseAnalysis=fullAnalysis(currentRows(),currentHeaders());
+        setupFilters();chooseChartColumns();rebuildFilteredAnalysis();updateDomainLabel();renderAllCore();switchSection("dashboard");
+      };
+      $("#domainSelector").onchange=e=>{state.domainManual=e.target.value;updateDomainLabel();if(state.activeSection==="dashboard")renderDashboard()};
+      $("#saveProjectBtn").onclick=saveProject;
+      $("#createReportTop").onclick=createReport;
+      document.addEventListener("click",e=>{
+        const panel=$("#columnPanel");
+        if(!panel.classList.contains("hidden")&&!panel.contains(e.target)&&e.target.id!=="columnVisibilityBtn")panel.classList.add("hidden");
+      });
+    }
+
+    bindGlobalEvents();
+  })();
+  </script>
+</body>
 </html>
